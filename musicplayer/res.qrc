@@ -4,5 +4,7 @@
         <file>res/pause.png</file>
         <file>res/right.png</file>
         <file>res/start.png</file>
+        <file>res/volume.png</file>
+        <file>res/volume_muted.png</file>
     </qresource>
 </RCC>

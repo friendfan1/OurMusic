@@ -41,6 +41,12 @@ void MainWindow::init(){
     connect(player,SIGNAL(positionChanged(qint64)),this,SLOT(slotPositionChange(qint64)));//播放进度改变对应进度条改变
     connect(ui->horizontalSlider,SIGNAL(sliderMoved(int)),this,SLOT(slotSliderMove(int)));//拖动时改变进度条的数字，但是不改变进度，否则音乐播放会卡
     connect(ui->horizontalSlider,SIGNAL(sliderReleased()),this,SLOT(slotSliderChange()));//松开进度条，改变播放进度
+
+    player->setVolume(100);
+    ui->volume_label->setText("100");
+    ui->VolumeSlider->setValue(player->volume());
+    connect(ui->volume_btn,&QAbstractButton::clicked,this,&slotVolumeBtnClicked);
+    connect(ui->VolumeSlider,SIGNAL(sliderMoved(int)),this,SLOT(slotVolumeSliderChange(int)));
 }
 
 QStringList MainWindow::getFileNames(const QString &path){
@@ -120,6 +126,35 @@ void MainWindow::slotSliderChange(){
 void MainWindow::slotSliderMove(int position){
     ui->label->setText(QString::number(position/60000)+":"+QString::number(position%60000/1000)+"/"+
                        QString::number(player->duration()/60000)+":"+QString::number(player->duration()%60000/1000));
+}
+void MainWindow::slotVolumeBtnClicked(){
+    if(!isMuted){
+        isMuted=true;
+        ui->volume_btn->setStyleSheet("QPushButton{border-image: url(:/res/volume_muted.png);}");
+        ui->volume_btn->setToolTip("单击关闭静音");
+        player->setVolume(0);
+        ui->volume_label->setText("0");
+        ui->VolumeSlider->setValue(0);
+    }
+    else{
+        isMuted=false;
+        ui->volume_btn->setStyleSheet("QPushButton{border-image: url(:/res/volume.png);}");
+        ui->volume_btn->setToolTip("单击开启静音");
+        player->setVolume(volume);
+        ui->volume_label->setText(QString::number(volume));
+        ui->VolumeSlider->setValue(volume);
+    }
+}
+void MainWindow::slotVolumeSliderChange(int vol){
+    if(isMuted){//被静音则解除静音
+        isMuted=false;
+        ui->volume_btn->setStyleSheet("QPushButton{border-image: url(:/res/volume.png);}");
+        ui->volume_btn->setToolTip("单击开启静音");
+    }
+    volume=vol;
+    ui->VolumeSlider->setValue(vol);
+    ui->volume_label->setText(QString::number(vol));
+    player->setVolume(vol);
 }
 
 void MainWindow::addItem(QString name){
