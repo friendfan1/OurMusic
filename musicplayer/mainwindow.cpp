@@ -36,7 +36,11 @@ void MainWindow::init(){
     player->setPlaylist(playerlist);//将播放列表加载到播放器
     connect(player,&QMediaPlayer::currentMediaChanged,this,&MainWindow::slotShowCurrentMusic);
     slotShowCurrentMusic();
-
+    ui->horizontalSlider->setMaximum(player->duration()/1000);//设置进度条最大值为当前媒体的长度
+    ui->label->setText("");
+    connect(player,SIGNAL(positionChanged(qint64)),this,SLOT(slotPositionChange(qint64)));//播放进度改变对应进度条改变
+    connect(ui->horizontalSlider,SIGNAL(sliderMoved(int)),this,SLOT(slotSliderMove(int)));//拖动时改变进度条的数字，但是不改变进度，否则音乐播放会卡
+    connect(ui->horizontalSlider,SIGNAL(sliderReleased()),this,SLOT(slotSliderChange()));//松开进度条，改变播放进度
 }
 
 QStringList MainWindow::getFileNames(const QString &path){
@@ -98,6 +102,24 @@ void MainWindow::slotShowCurrentMusic(){
     int index = playerlist->currentIndex();
     QString songName = filelist.at(index);
     ui->currentmusic->setText(songName);
+}
+
+void MainWindow::slotPositionChange(qint64 position){
+    ui->horizontalSlider->setMaximum(player->duration());
+    ui->horizontalSlider->setValue(position);
+    ui->label->setText(QString::number(position/60000)+":"+QString::number(position%60000/1000)+"/"+
+                       QString::number(player->duration()/60000)+":"+QString::number(player->duration()%60000/1000));
+}
+void MainWindow::slotSliderChange(){
+
+    int position=ui->horizontalSlider->value();
+    player->setPosition(position);
+    ui->label->setText(QString::number(position/60000)+":"+QString::number(position%60000/1000)+"/"+
+                       QString::number(player->duration()/60000)+":"+QString::number(player->duration()%60000/1000));
+}
+void MainWindow::slotSliderMove(int position){
+    ui->label->setText(QString::number(position/60000)+":"+QString::number(position%60000/1000)+"/"+
+                       QString::number(player->duration()/60000)+":"+QString::number(player->duration()%60000/1000));
 }
 
 void MainWindow::addItem(QString name){

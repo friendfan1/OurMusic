@@ -42,6 +42,9 @@ private slots:
     void slotButtonpre();
     void slotButtonshow();
     void slotChooseMusic();
+    void slotPositionChange(qint64 position);//播放进度条改变
+    void slotSliderChange();//进度条拖动松开后改变进度
+    void slotSliderMove(int position);//进度条拖动
 };
 
 #endif // MAINWINDOW_H
