@@ -23,16 +23,28 @@ DEFINES += QT_DEPRECATED_WARNINGS
 #DEFINES += QT_DISABLE_DEPRECATED_BEFORE=0x060000    # disables all the APIs deprecated before Qt 6.0.0
 
 
+
+
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    cover.cpp \
+    mp3header.cpp \
+    stylusandrecord.cpp \
+    stylus.cpp
 
 HEADERS += \
         mainwindow.h \
-    config.h
+    config.h \
+    cover.h \
+    mp3header.h \
+    stylusandrecord.h \
+    stylus.h
 
 FORMS += \
         mainwindow.ui
 
 RESOURCES += \
     res.qrc
+
+

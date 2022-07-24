@@ -7,11 +7,49 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+    cover = new Cover(this);
+    StyandRe = new StylusandRecord(this);
+    Sty = new Stylus(this);
+
+    cover->move(177,177);
+    StyandRe->move(80,80);
+    Sty->move(80,-140);
+    m_timer=new QTimer(this);
     connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotButtonStart);
+    connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotPixShow);
+    connect(ui->Bpause,&QPushButton::clicked,[=]{
+        m_timer->start(10);
+        if(isplay == true){
+            cover->isPlay = true;
+            StyandRe->isPlay = true;
+            Sty->isPlay = true;
+        }
+        else{
+            cover->isPlay = false;
+            StyandRe->isPlay = false;
+            Sty->isPlay = false;
+        }
+
+    });
     connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotButtonnext);
+    connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotPixShow);
+    connect(ui->Bnext,&QPushButton::clicked,[=]{
+        cover->SetAngle(0);
+    });
     connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotButtonpre);
+    connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotPixShow);
+    connect(ui->Blast,&QPushButton::clicked,[=]{
+        cover->SetAngle(0);
+    });
     connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
+    connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotPixShow);
+    connect(ui->tableWidget,QTableWidget::itemDoubleClicked,[=]{
+        cover->SetAngle(0);
+    });
+    connect(m_timer,&QTimer::timeout,[=](){
+       update();
+    });
     
     init();     //初始化
     ui->tableWidget->hide();
@@ -47,6 +85,7 @@ void MainWindow::init(){
     ui->VolumeSlider->setValue(player->volume());
     connect(ui->volume_btn,&QAbstractButton::clicked,this,&slotVolumeBtnClicked);
     connect(ui->VolumeSlider,SIGNAL(sliderMoved(int)),this,SLOT(slotVolumeSliderChange(int)));
+
 }
 
 QStringList MainWindow::getFileNames(const QString &path){
@@ -163,4 +202,14 @@ void MainWindow::addItem(QString name){
 
     QTableWidgetItem *itemName = new QTableWidgetItem(name);
     ui->tableWidget->setItem(count,0,itemName);
+}
+
+void MainWindow::slotPixShow(){
+    QString fileName = filelist.at(playerlist->currentIndex());
+    QString LfileName = MusicPath+"\\"+fileName;
+    const wchar_t * url = reinterpret_cast<const wchar_t *>(LfileName.utf16());
+    int x = mp3.GetPic(url);
+    //这里有问题 如果写成else if(x == 2)cover->Setfilename("music\\test2.jpg");导致jpg文件不显示
+    cover->Setfilename("music\\test2.jpg");
+    if(x == 3){cover->Setfilename("music\\test3.png");}
 }
