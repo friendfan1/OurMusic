@@ -32,22 +32,9 @@ MainWindow::MainWindow(QWidget *parent) :
 
     });
     connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotButtonnext);
-    connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotPixShow);
-    connect(ui->Bnext,&QPushButton::clicked,[=]{
-        cover->SetAngle(0);
-    });
     connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotButtonpre);
-    connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotPixShow);
-    connect(ui->Blast,&QPushButton::clicked,[=]{
-        cover->SetAngle(0);
-    });
     connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
-
-    connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotPixShow);
-    connect(ui->tableWidget,QTableWidget::itemDoubleClicked,[=]{
-        cover->SetAngle(0);
-    });
     connect(m_timer,&QTimer::timeout,[=](){
        update();
     });
@@ -92,7 +79,10 @@ void MainWindow::init(){
     connect(ui->volume_btn,&QAbstractButton::clicked,this,&slotVolumeBtnClicked);
     connect(ui->VolumeSlider,SIGNAL(sliderMoved(int)),this,SLOT(slotVolumeSliderChange(int)));
 
-
+    connect(playerlist,&QMediaPlaylist::currentIndexChanged,this,&MainWindow::slotPixShow);
+    connect(playerlist,&QMediaPlaylist::currentIndexChanged,[=]{
+        cover->SetAngle(0);
+    });
 }
 
 QStringList MainWindow::getFileNames(const QString &path){
