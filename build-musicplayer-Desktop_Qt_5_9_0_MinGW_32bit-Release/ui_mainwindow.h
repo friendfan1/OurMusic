@@ -18,6 +18,7 @@
 #include <QtWidgets/QMainWindow>
 #include <QtWidgets/QMenuBar>
 #include <QtWidgets/QPushButton>
+#include <QtWidgets/QSlider>
 #include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
 #include <QtWidgets/QToolBar>
@@ -35,6 +36,11 @@ public:
     QTableWidget *tableWidget;
     QPushButton *Bmenu;
     QLabel *currentmusic;
+    QSlider *horizontalSlider;
+    QLabel *label;
+    QPushButton *volume_btn;
+    QSlider *VolumeSlider;
+    QLabel *volume_label;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -78,6 +84,32 @@ public:
         currentmusic = new QLabel(centralWidget);
         currentmusic->setObjectName(QStringLiteral("currentmusic"));
         currentmusic->setGeometry(QRect(100, 410, 351, 16));
+        horizontalSlider = new QSlider(centralWidget);
+        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setGeometry(QRect(90, 490, 531, 22));
+        horizontalSlider->setMouseTracking(true);
+        horizontalSlider->setOrientation(Qt::Horizontal);
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+        label->setGeometry(QRect(10, 490, 71, 21));
+        volume_btn = new QPushButton(centralWidget);
+        volume_btn->setObjectName(QStringLiteral("volume_btn"));
+        volume_btn->setGeometry(QRect(20, 440, 35, 33));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(volume_btn->sizePolicy().hasHeightForWidth());
+        volume_btn->setSizePolicy(sizePolicy);
+        volume_btn->setStyleSheet(QStringLiteral("QPushButton{border-image: url(:/res/volume.png);}"));
+        VolumeSlider = new QSlider(centralWidget);
+        VolumeSlider->setObjectName(QStringLiteral("VolumeSlider"));
+        VolumeSlider->setGeometry(QRect(26, 319, 21, 121));
+        VolumeSlider->setMouseTracking(true);
+        VolumeSlider->setMaximum(100);
+        VolumeSlider->setOrientation(Qt::Vertical);
+        volume_label = new QLabel(centralWidget);
+        volume_label->setObjectName(QStringLiteral("volume_label"));
+        volume_label->setGeometry(QRect(20, 300, 31, 16));
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -105,6 +137,12 @@ public:
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\220\215\347\247\260", Q_NULLPTR));
         Bmenu->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\210\227\350\241\250", Q_NULLPTR));
         currentmusic->setText(QString());
+        label->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        volume_btn->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>\345\215\225\345\207\273\345\274\200\345\220\257\351\235\231\351\237\263</p></body></html>", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        volume_btn->setText(QString());
+        volume_label->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };
