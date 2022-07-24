@@ -21,8 +21,8 @@ QT_BEGIN_MOC_NAMESPACE
 QT_WARNING_PUSH
 QT_WARNING_DISABLE_DEPRECATED
 struct qt_meta_stringdata_MainWindow_t {
-    QByteArrayData data[13];
-    char stringdata0[145];
+    QByteArrayData data[20];
+    char stringdata0[261];
 };
 #define QT_MOC_LITERAL(idx, ofs, len) \
     Q_STATIC_BYTE_ARRAY_DATA_HEADER_INITIALIZER_WITH_OFFSET(len, \
@@ -43,14 +43,24 @@ QT_MOC_LITERAL(8, 69, 15), // "slotButtonStart"
 QT_MOC_LITERAL(9, 85, 14), // "slotButtonnext"
 QT_MOC_LITERAL(10, 100, 13), // "slotButtonpre"
 QT_MOC_LITERAL(11, 114, 14), // "slotButtonshow"
-QT_MOC_LITERAL(12, 129, 15) // "slotChooseMusic"
+QT_MOC_LITERAL(12, 129, 15), // "slotChooseMusic"
+QT_MOC_LITERAL(13, 145, 18), // "slotPositionChange"
+QT_MOC_LITERAL(14, 164, 8), // "position"
+QT_MOC_LITERAL(15, 173, 16), // "slotSliderChange"
+QT_MOC_LITERAL(16, 190, 14), // "slotSliderMove"
+QT_MOC_LITERAL(17, 205, 20), // "slotVolumeBtnClicked"
+QT_MOC_LITERAL(18, 226, 22), // "slotVolumeSliderChange"
+QT_MOC_LITERAL(19, 249, 11) // "slotPixShow"
 
     },
     "MainWindow\0init\0\0addItem\0name\0"
     "getFileNames\0path\0slotShowCurrentMusic\0"
     "slotButtonStart\0slotButtonnext\0"
     "slotButtonpre\0slotButtonshow\0"
-    "slotChooseMusic"
+    "slotChooseMusic\0slotPositionChange\0"
+    "position\0slotSliderChange\0slotSliderMove\0"
+    "slotVolumeBtnClicked\0slotVolumeSliderChange\0"
+    "slotPixShow"
 };
 #undef QT_MOC_LITERAL
 
@@ -60,7 +70,7 @@ static const uint qt_meta_data_MainWindow[] = {
        7,       // revision
        0,       // classname
        0,    0, // classinfo
-       9,   14, // methods
+      15,   14, // methods
        0,    0, // properties
        0,    0, // enums/sets
        0,    0, // constructors
@@ -68,15 +78,21 @@ static const uint qt_meta_data_MainWindow[] = {
        0,       // signalCount
 
  // slots: name, argc, parameters, tag, flags
-       1,    0,   59,    2, 0x08 /* Private */,
-       3,    1,   60,    2, 0x08 /* Private */,
-       5,    1,   63,    2, 0x08 /* Private */,
-       7,    0,   66,    2, 0x08 /* Private */,
-       8,    0,   67,    2, 0x08 /* Private */,
-       9,    0,   68,    2, 0x08 /* Private */,
-      10,    0,   69,    2, 0x08 /* Private */,
-      11,    0,   70,    2, 0x08 /* Private */,
-      12,    0,   71,    2, 0x08 /* Private */,
+       1,    0,   89,    2, 0x08 /* Private */,
+       3,    1,   90,    2, 0x08 /* Private */,
+       5,    1,   93,    2, 0x08 /* Private */,
+       7,    0,   96,    2, 0x08 /* Private */,
+       8,    0,   97,    2, 0x08 /* Private */,
+       9,    0,   98,    2, 0x08 /* Private */,
+      10,    0,   99,    2, 0x08 /* Private */,
+      11,    0,  100,    2, 0x08 /* Private */,
+      12,    0,  101,    2, 0x08 /* Private */,
+      13,    1,  102,    2, 0x08 /* Private */,
+      15,    0,  105,    2, 0x08 /* Private */,
+      16,    1,  106,    2, 0x08 /* Private */,
+      17,    0,  109,    2, 0x08 /* Private */,
+      18,    1,  110,    2, 0x08 /* Private */,
+      19,    0,  113,    2, 0x08 /* Private */,
 
  // slots: parameters
     QMetaType::Void,
@@ -87,6 +103,12 @@ static const uint qt_meta_data_MainWindow[] = {
     QMetaType::Void,
     QMetaType::Void,
     QMetaType::Void,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::LongLong,   14,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,   14,
+    QMetaType::Void,
+    QMetaType::Void, QMetaType::Int,    2,
     QMetaType::Void,
 
        0        // eod
@@ -108,6 +130,12 @@ void MainWindow::qt_static_metacall(QObject *_o, QMetaObject::Call _c, int _id, 
         case 6: _t->slotButtonpre(); break;
         case 7: _t->slotButtonshow(); break;
         case 8: _t->slotChooseMusic(); break;
+        case 9: _t->slotPositionChange((*reinterpret_cast< qint64(*)>(_a[1]))); break;
+        case 10: _t->slotSliderChange(); break;
+        case 11: _t->slotSliderMove((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 12: _t->slotVolumeBtnClicked(); break;
+        case 13: _t->slotVolumeSliderChange((*reinterpret_cast< int(*)>(_a[1]))); break;
+        case 14: _t->slotPixShow(); break;
         default: ;
         }
     }
@@ -138,13 +166,13 @@ int MainWindow::qt_metacall(QMetaObject::Call _c, int _id, void **_a)
     if (_id < 0)
         return _id;
     if (_c == QMetaObject::InvokeMetaMethod) {
-        if (_id < 9)
+        if (_id < 15)
             qt_static_metacall(this, _c, _id, _a);
-        _id -= 9;
+        _id -= 15;
     } else if (_c == QMetaObject::RegisterMethodArgumentMetaType) {
-        if (_id < 9)
+        if (_id < 15)
             *reinterpret_cast<int*>(_a[0]) = -1;
-        _id -= 9;
+        _id -= 15;
     }
     return _id;
 }

@@ -1,4 +1,4 @@
-<RCC>
+﻿<RCC>
     <qresource prefix="/">
         <file>res/left.png</file>
         <file>res/pause.png</file>
@@ -6,5 +6,8 @@
         <file>res/start.png</file>
         <file>res/volume.png</file>
         <file>res/volume_muted.png</file>
+        <file>res/10001.jpg</file>
+        <file>res/record.png</file>
+        <file>res/stylus.png</file>
     </qresource>
 </RCC>
