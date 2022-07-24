@@ -13,6 +13,7 @@ LyricWidget::LyricWidget(QWidget *parent) : QWidget(parent)
 void LyricWidget::loadLyric(QMediaPlayer *player,QString filename){
     lyrics.clear();//清除已读的全部歌词
     begin_time=0;
+    last_time=-50;
     count_lrc=-1;
     if(this->player==nullptr){
         this->player=player;
@@ -41,8 +42,14 @@ void LyricWidget::loadLyric(QMediaPlayer *player,QString filename){
 }
 void LyricWidget::showLyric(qint64 position){
     if(!IsLrcExist)return;//没有歌词则不做动作
-    if(position<begin_time)return;//进度未到时间点，也不做动作
+    if(position<begin_time&&position>=last_time)return;//进度未到时间点，也不做动作
     if(count_lrc>=lyrics.length())return;//歌词读完了就不做动作
+
+    if(position<last_time){
+        begin_time=0;
+        last_time=-50;
+        count_lrc=-1;
+    };
 
     //读取下标指示的本句歌词
     if(count_lrc<0){
@@ -65,7 +72,7 @@ void LyricWidget::showLyric(qint64 position){
         if(timeInfo[i]==':')timeInfo[i]='.';
     }
     int minsec=(int)(timeInfo.toDouble()*1000.0);
-
+    last_time=begin_time;
     begin_time=minute*60000+minsec;//记录下一句歌词的开始时间
 
 }
