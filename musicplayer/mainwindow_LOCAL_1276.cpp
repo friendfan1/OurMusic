@@ -43,7 +43,6 @@ MainWindow::MainWindow(QWidget *parent) :
     });
     connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
-
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotPixShow);
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,[=]{
         cover->SetAngle(0);
@@ -52,7 +51,6 @@ MainWindow::MainWindow(QWidget *parent) :
        update();
     });
     
-
     init();     //初始化
     ui->tableWidget->hide();
 }
@@ -74,10 +72,6 @@ void MainWindow::init(){
     }
     playerlist->setCurrentIndex(0);
     player->setPlaylist(playerlist);//将播放列表加载到播放器
-
-    lyric_widget=new LyricWidget(this);
-    lyric_widget->move(120,380);//初始化歌词部件
-
     connect(player,&QMediaPlayer::currentMediaChanged,this,&MainWindow::slotShowCurrentMusic);
     slotShowCurrentMusic();
     ui->horizontalSlider->setMaximum(player->duration()/1000);//设置进度条最大值为当前媒体的长度
@@ -91,7 +85,6 @@ void MainWindow::init(){
     ui->VolumeSlider->setValue(player->volume());
     connect(ui->volume_btn,&QAbstractButton::clicked,this,&slotVolumeBtnClicked);
     connect(ui->VolumeSlider,SIGNAL(sliderMoved(int)),this,SLOT(slotVolumeSliderChange(int)));
-
 
 }
 
@@ -154,8 +147,6 @@ void MainWindow::slotShowCurrentMusic(){
     int index = playerlist->currentIndex();
     QString songName = filelist.at(index);
     ui->currentmusic->setText(songName);
-
-    lyric_widget->loadLyric(player,MusicPath+"\\"+songName);//显示当前歌曲的歌词
 }
 
 void MainWindow::slotPositionChange(qint64 position){

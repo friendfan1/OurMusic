@@ -43,7 +43,7 @@ MainWindow::MainWindow(QWidget *parent) :
     });
     connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
-
+<<<<<<< HEAD
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotPixShow);
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,[=]{
         cover->SetAngle(0);
@@ -52,7 +52,9 @@ MainWindow::MainWindow(QWidget *parent) :
        update();
     });
     
+=======
 
+>>>>>>> 28e09f3ba7251aa9fe5f16e491a8fc78052eee8e
     init();     //初始化
     ui->tableWidget->hide();
 }
@@ -92,7 +94,10 @@ void MainWindow::init(){
     connect(ui->volume_btn,&QAbstractButton::clicked,this,&slotVolumeBtnClicked);
     connect(ui->VolumeSlider,SIGNAL(sliderMoved(int)),this,SLOT(slotVolumeSliderChange(int)));
 
+<<<<<<< HEAD
+=======
 
+>>>>>>> 28e09f3ba7251aa9fe5f16e491a8fc78052eee8e
 }
 
 QStringList MainWindow::getFileNames(const QString &path){

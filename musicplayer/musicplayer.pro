@@ -28,18 +28,26 @@ DEFINES += QT_DEPRECATED_WARNINGS
 SOURCES += \
         main.cpp \
         mainwindow.cpp \
+<<<<<<< HEAD
     cover.cpp \
     mp3header.cpp \
     stylusandrecord.cpp \
     stylus.cpp
+=======
+    lyricwidget.cpp
+>>>>>>> 28e09f3ba7251aa9fe5f16e491a8fc78052eee8e
 
 HEADERS += \
         mainwindow.h \
     config.h \
+<<<<<<< HEAD
     cover.h \
     mp3header.h \
     stylusandrecord.h \
     stylus.h
+=======
+    lyricwidget.h
+>>>>>>> 28e09f3ba7251aa9fe5f16e491a8fc78052eee8e
 
 FORMS += \
         mainwindow.ui
