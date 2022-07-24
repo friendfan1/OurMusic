@@ -51,28 +51,30 @@ void LyricWidget::showLyric(qint64 position){
         count_lrc=-1;
     };
 
-    //读取下标指示的本句歌词
-    if(count_lrc<0){
-        lyric_label->setText("");
-    }
-    else{
-        lyric_label->setText(lyrics[count_lrc].right(lyrics[count_lrc].length()-lyrics[count_lrc].indexOf(']')-1));
-    }
+    while(position>=begin_time){
+        //读取下标指示的本句歌词
+        if(count_lrc<0){
+            lyric_label->setText("");
+        }
+        else{
+            lyric_label->setText(lyrics[count_lrc].right(lyrics[count_lrc].length()-lyrics[count_lrc].indexOf(']')-1));
+        }
 
-    //读取下一句歌词的时间点
-    do{
-        count_lrc++;
-    }while( (!lyrics[count_lrc].startsWith('[')) && count_lrc<lyrics.length());//让下标指向下一句歌词
-    if(count_lrc>=lyrics.length())return;
-    QString lrc=lyrics[count_lrc];
-    QString timeInfo=lyrics[count_lrc].mid(lyrics[count_lrc].indexOf('[')+1,lyrics[count_lrc].indexOf(']')-lyrics[count_lrc].indexOf('[')-1);
-    int minute=timeInfo.left(timeInfo.indexOf(':')).toInt();
-    timeInfo.remove(0,timeInfo.indexOf(':')+1);
-    for(int i=0;i<timeInfo.length();i++){
-        if(timeInfo[i]==':')timeInfo[i]='.';
+        //读取下一句歌词的时间点
+        do{
+            count_lrc++;
+        }while( (!lyrics[count_lrc].startsWith('[')) && count_lrc<lyrics.length());//让下标指向下一句歌词
+        if(count_lrc>=lyrics.length())return;
+        QString lrc=lyrics[count_lrc];
+        QString timeInfo=lyrics[count_lrc].mid(lyrics[count_lrc].indexOf('[')+1,lyrics[count_lrc].indexOf(']')-lyrics[count_lrc].indexOf('[')-1);
+        int minute=timeInfo.left(timeInfo.indexOf(':')).toInt();
+        timeInfo.remove(0,timeInfo.indexOf(':')+1);
+        for(int i=0;i<timeInfo.length();i++){
+            if(timeInfo[i]==':')timeInfo[i]='.';
+        }
+        int minsec=(int)(timeInfo.toDouble()*1000.0);
+        last_time=begin_time;
+        begin_time=minute*60000+minsec;//记录下一句歌词的开始时间
     }
-    int minsec=(int)(timeInfo.toDouble()*1000.0);
-    last_time=begin_time;
-    begin_time=minute*60000+minsec;//记录下一句歌词的开始时间
 
 }
