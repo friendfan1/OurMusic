@@ -25,11 +25,13 @@ DEFINES += QT_DEPRECATED_WARNINGS
 
 SOURCES += \
         main.cpp \
-        mainwindow.cpp
+        mainwindow.cpp \
+    lyricwidget.cpp
 
 HEADERS += \
         mainwindow.h \
-    config.h
+    config.h \
+    lyricwidget.h
 
 FORMS += \
         mainwindow.ui

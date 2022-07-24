@@ -7,7 +7,7 @@
 #include<QStringList>
 #include<QTableWidget>
 #include<QDir>
-
+#include "lyricwidget.h"
 #include"config.h"
 namespace Ui {
 class MainWindow;
@@ -16,7 +16,7 @@ class MainWindow;
 class MainWindow : public QMainWindow
 {
     Q_OBJECT
-
+friend class LyricWidget;
 public:
     explicit MainWindow(QWidget *parent = 0);
     ~MainWindow();
@@ -32,6 +32,8 @@ private:
     QStringList filelist;//文件名
     QMediaPlaylist *playerlist;
     QMediaPlayer *player;
+
+    LyricWidget* lyric_widget;
 
 private slots:
     void init();
