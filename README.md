@@ -2,9 +2,7 @@
 ## 产品概述
 - 基于QT带图形界面的音乐播放器
 ## 目录结构
-```
-│  README.md
-│  
+```  
 ├─build-musicplayer-Desktop_Qt_5_9_0_MinGW_32bit-Release
 │  │    ...
 │  │  
