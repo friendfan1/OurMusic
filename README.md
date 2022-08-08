@@ -2,6 +2,7 @@
 ## 产品概述
 - 基于QT带图形界面的音乐播放器
 ## 目录结构
+```
 │  README.md
 │  
 ├─build-musicplayer-Desktop_Qt_5_9_0_MinGW_32bit-Release
@@ -58,6 +59,7 @@
             stylus.png
             volume.png
             volume_muted.png
+```         
 ## V0.5
 - 实现了音乐播放功能，歌曲切换，通过列表点歌功能
 ## V1.0
