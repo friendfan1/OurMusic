@@ -16,17 +16,9 @@
 │  │      
 │  └─release
 └─musicplayer  //项目文件
-    │  │    ...
+    │    ...
     └─res //图片素材
-            10001.jpg
-            left.png
-            pause.png
-            record.png
-            right.png
-            start.png
-            stylus.png
-            volume.png
-            volume_muted.png
+        ...
 ```         
 ## V0.5
 - 实现了音乐播放功能，歌曲切换，通过列表点歌功能
