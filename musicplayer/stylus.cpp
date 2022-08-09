@@ -3,6 +3,7 @@
 Stylus::Stylus(QWidget *parent) : QWidget(parent)
 {
     setFixedSize(330,330);
+
 }
 void Stylus::paintEvent(QPaintEvent *){
     QPainter painter(this);

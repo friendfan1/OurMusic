@@ -3,6 +3,7 @@
 StylusandRecord::StylusandRecord(QWidget *parent) : QWidget(parent)
 {
     setFixedSize(320,320);
+
 }
 
 void StylusandRecord::paintEvent(QPaintEvent *){

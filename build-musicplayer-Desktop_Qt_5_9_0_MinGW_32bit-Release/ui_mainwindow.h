@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGridLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
 #include <QtWidgets/QMainWindow>
@@ -30,17 +31,18 @@ class Ui_MainWindow
 {
 public:
     QWidget *centralWidget;
-    QPushButton *Blast;
-    QPushButton *Bpause;
-    QPushButton *Bnext;
-    QTableWidget *tableWidget;
-    QPushButton *Bmenu;
+    QGridLayout *gridLayout;
     QLabel *currentmusic;
-    QSlider *horizontalSlider;
-    QLabel *label;
+    QPushButton *Bmenu;
+    QPushButton *Bpause;
     QPushButton *volume_btn;
+    QPushButton *Blast;
+    QPushButton *Bnext;
+    QLabel *label;
+    QSlider *horizontalSlider;
     QSlider *VolumeSlider;
     QLabel *volume_label;
+    QTableWidget *tableWidget;
     QMenuBar *menuBar;
     QToolBar *mainToolBar;
     QStatusBar *statusBar;
@@ -49,71 +51,120 @@ public:
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(688, 593);
+        MainWindow->resize(700, 600);
+        MainWindow->setMinimumSize(QSize(700, 600));
+        MainWindow->setMaximumSize(QSize(1200, 800));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
-        Blast = new QPushButton(centralWidget);
-        Blast->setObjectName(QStringLiteral("Blast"));
-        Blast->setGeometry(QRect(90, 440, 93, 28));
-        QIcon icon;
-        icon.addFile(QStringLiteral(":/res/left.png"), QSize(), QIcon::Normal, QIcon::Off);
-        Blast->setIcon(icon);
+        gridLayout = new QGridLayout(centralWidget);
+        gridLayout->setSpacing(6);
+        gridLayout->setContentsMargins(11, 11, 11, 11);
+        gridLayout->setObjectName(QStringLiteral("gridLayout"));
+        currentmusic = new QLabel(centralWidget);
+        currentmusic->setObjectName(QStringLiteral("currentmusic"));
+
+        gridLayout->addWidget(currentmusic, 2, 1, 1, 3);
+
+        Bmenu = new QPushButton(centralWidget);
+        Bmenu->setObjectName(QStringLiteral("Bmenu"));
+        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Fixed);
+        sizePolicy.setHorizontalStretch(0);
+        sizePolicy.setVerticalStretch(0);
+        sizePolicy.setHeightForWidth(Bmenu->sizePolicy().hasHeightForWidth());
+        Bmenu->setSizePolicy(sizePolicy);
+
+        gridLayout->addWidget(Bmenu, 3, 4, 1, 1);
+
         Bpause = new QPushButton(centralWidget);
         Bpause->setObjectName(QStringLiteral("Bpause"));
-        Bpause->setGeometry(QRect(240, 440, 93, 28));
+        QIcon icon;
+        icon.addFile(QStringLiteral(":/res/start.png"), QSize(), QIcon::Normal, QIcon::Off);
+        Bpause->setIcon(icon);
+
+        gridLayout->addWidget(Bpause, 3, 2, 1, 1);
+
+        volume_btn = new QPushButton(centralWidget);
+        volume_btn->setObjectName(QStringLiteral("volume_btn"));
+        QSizePolicy sizePolicy1(QSizePolicy::Maximum, QSizePolicy::Preferred);
+        sizePolicy1.setHorizontalStretch(0);
+        sizePolicy1.setVerticalStretch(0);
+        sizePolicy1.setHeightForWidth(volume_btn->sizePolicy().hasHeightForWidth());
+        volume_btn->setSizePolicy(sizePolicy1);
+        volume_btn->setStyleSheet(QStringLiteral("QPushButton{border-image: url(:/res/volume.png);}"));
+
+        gridLayout->addWidget(volume_btn, 3, 0, 1, 1);
+
+        Blast = new QPushButton(centralWidget);
+        Blast->setObjectName(QStringLiteral("Blast"));
         QIcon icon1;
-        icon1.addFile(QStringLiteral(":/res/start.png"), QSize(), QIcon::Normal, QIcon::Off);
-        Bpause->setIcon(icon1);
+        icon1.addFile(QStringLiteral(":/res/left.png"), QSize(), QIcon::Normal, QIcon::Off);
+        Blast->setIcon(icon1);
+
+        gridLayout->addWidget(Blast, 3, 1, 1, 1);
+
         Bnext = new QPushButton(centralWidget);
         Bnext->setObjectName(QStringLiteral("Bnext"));
-        Bnext->setGeometry(QRect(380, 440, 93, 28));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/res/right.png"), QSize(), QIcon::Normal, QIcon::Off);
         Bnext->setIcon(icon2);
+
+        gridLayout->addWidget(Bnext, 3, 3, 1, 1);
+
+        label = new QLabel(centralWidget);
+        label->setObjectName(QStringLiteral("label"));
+
+        gridLayout->addWidget(label, 4, 0, 1, 1);
+
+        horizontalSlider = new QSlider(centralWidget);
+        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setMouseTracking(true);
+        horizontalSlider->setOrientation(Qt::Horizontal);
+
+        gridLayout->addWidget(horizontalSlider, 4, 1, 1, 4);
+
+        VolumeSlider = new QSlider(centralWidget);
+        VolumeSlider->setObjectName(QStringLiteral("VolumeSlider"));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Maximum);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(VolumeSlider->sizePolicy().hasHeightForWidth());
+        VolumeSlider->setSizePolicy(sizePolicy2);
+        VolumeSlider->setMouseTracking(true);
+        VolumeSlider->setMaximum(100);
+        VolumeSlider->setOrientation(Qt::Vertical);
+
+        gridLayout->addWidget(VolumeSlider, 2, 0, 1, 1);
+
+        volume_label = new QLabel(centralWidget);
+        volume_label->setObjectName(QStringLiteral("volume_label"));
+        QSizePolicy sizePolicy3(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(volume_label->sizePolicy().hasHeightForWidth());
+        volume_label->setSizePolicy(sizePolicy3);
+
+        gridLayout->addWidget(volume_label, 1, 0, 1, 1);
+
         tableWidget = new QTableWidget(centralWidget);
         if (tableWidget->columnCount() < 1)
             tableWidget->setColumnCount(1);
         QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
         tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
         tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(500, 10, 161, 411));
+        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy4);
+        tableWidget->setMinimumSize(QSize(50, 50));
         tableWidget->horizontalHeader()->setStretchLastSection(true);
-        Bmenu = new QPushButton(centralWidget);
-        Bmenu->setObjectName(QStringLiteral("Bmenu"));
-        Bmenu->setGeometry(QRect(530, 440, 93, 28));
-        currentmusic = new QLabel(centralWidget);
-        currentmusic->setObjectName(QStringLiteral("currentmusic"));
-        currentmusic->setGeometry(QRect(100, 410, 351, 16));
-        horizontalSlider = new QSlider(centralWidget);
-        horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
-        horizontalSlider->setGeometry(QRect(90, 490, 531, 22));
-        horizontalSlider->setMouseTracking(true);
-        horizontalSlider->setOrientation(Qt::Horizontal);
-        label = new QLabel(centralWidget);
-        label->setObjectName(QStringLiteral("label"));
-        label->setGeometry(QRect(10, 490, 71, 21));
-        volume_btn = new QPushButton(centralWidget);
-        volume_btn->setObjectName(QStringLiteral("volume_btn"));
-        volume_btn->setGeometry(QRect(20, 440, 35, 33));
-        QSizePolicy sizePolicy(QSizePolicy::Minimum, QSizePolicy::Preferred);
-        sizePolicy.setHorizontalStretch(0);
-        sizePolicy.setVerticalStretch(0);
-        sizePolicy.setHeightForWidth(volume_btn->sizePolicy().hasHeightForWidth());
-        volume_btn->setSizePolicy(sizePolicy);
-        volume_btn->setStyleSheet(QStringLiteral("QPushButton{border-image: url(:/res/volume.png);}"));
-        VolumeSlider = new QSlider(centralWidget);
-        VolumeSlider->setObjectName(QStringLiteral("VolumeSlider"));
-        VolumeSlider->setGeometry(QRect(26, 319, 21, 121));
-        VolumeSlider->setMouseTracking(true);
-        VolumeSlider->setMaximum(100);
-        VolumeSlider->setOrientation(Qt::Vertical);
-        volume_label = new QLabel(centralWidget);
-        volume_label->setObjectName(QStringLiteral("volume_label"));
-        volume_label->setGeometry(QRect(20, 300, 31, 16));
+
+        gridLayout->addWidget(tableWidget, 0, 4, 3, 1);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
-        menuBar->setGeometry(QRect(0, 0, 688, 26));
+        menuBar->setGeometry(QRect(0, 0, 700, 26));
         MainWindow->setMenuBar(menuBar);
         mainToolBar = new QToolBar(MainWindow);
         mainToolBar->setObjectName(QStringLiteral("mainToolBar"));
@@ -130,19 +181,19 @@ public:
     void retranslateUi(QMainWindow *MainWindow)
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
-        Blast->setText(QString());
-        Bpause->setText(QString());
-        Bnext->setText(QString());
-        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
-        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\220\215\347\247\260", Q_NULLPTR));
-        Bmenu->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\210\227\350\241\250", Q_NULLPTR));
         currentmusic->setText(QString());
-        label->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
+        Bmenu->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\210\227\350\241\250", Q_NULLPTR));
+        Bpause->setText(QString());
 #ifndef QT_NO_TOOLTIP
         volume_btn->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>\345\215\225\345\207\273\345\274\200\345\220\257\351\235\231\351\237\263</p></body></html>", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         volume_btn->setText(QString());
+        Blast->setText(QString());
+        Bnext->setText(QString());
+        label->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
         volume_label->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
+        QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
+        ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\220\215\347\247\260", Q_NULLPTR));
     } // retranslateUi
 
 };
