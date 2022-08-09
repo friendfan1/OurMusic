@@ -9,5 +9,7 @@
         <file>res/10001.jpg</file>
         <file>res/record.png</file>
         <file>res/stylus.png</file>
+        <file>res/justify.svg</file>
+        <file>res/OurMusic.jpg</file>
     </qresource>
 </RCC>

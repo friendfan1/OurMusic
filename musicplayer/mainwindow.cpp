@@ -16,6 +16,7 @@ MainWindow::MainWindow(QWidget *parent) :
     StyandRe->move(80,65);
     Sty->move(80,-140);
     m_timer=new QTimer(this);
+    m_timer->start(10);
     connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotButtonStart);
     connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotPixShow);
     connect(ui->Bpause,&QPushButton::clicked,[=]{
@@ -35,6 +36,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotButtonnext);
     connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotButtonpre);
     connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
+
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
     connect(m_timer,&QTimer::timeout,[=](){
        update();
@@ -212,6 +214,6 @@ void MainWindow::slotPixShow(){
     //这里有问题 如果写成else if(x == 2)cover->Setfilename("music\\test2.jpg");导致jpg文件不显示
     cover->Setfilename("music\\test2.jpg");
     if(x == 3){cover->Setfilename("music\\test3.png");}
-    if(x == 1){cover->Setfilename(":/res/start.png");}
+    if(x == 1){cover->Setfilename(":/res/OurMusic.jpg");}
     qDebug() << x;
 }

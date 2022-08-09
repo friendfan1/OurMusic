@@ -12,7 +12,7 @@ class StylusandRecord : public QWidget
     Q_OBJECT
 public:
     StylusandRecord(QWidget *parent = 0);
-    bool isPlay;//用于设置是否专辑封面是否转圈
+    bool isPlay = false;//用于设置是否专辑封面是否转圈
 protected:
     void paintEvent(QPaintEvent *);//绘图事件
 private:

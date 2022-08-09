@@ -32,6 +32,7 @@ SOURCES += main.cpp \
     cover.cpp \
     mp3header.cpp \
     lyricwidget.cpp \
+    mycover.cpp
 
 HEADERS += \
         mainwindow.h \
@@ -40,11 +41,13 @@ HEADERS += \
     mp3header.h \
     stylus.h \
     stylusandrecord.h \
-    cover.h
+    cover.h \
+    mycover.h
     cover.h \
 
 FORMS += \
-    mainwindow.ui
+    mainwindow.ui \
+    mycover.ui
 RESOURCES += \
     res.qrc
 
