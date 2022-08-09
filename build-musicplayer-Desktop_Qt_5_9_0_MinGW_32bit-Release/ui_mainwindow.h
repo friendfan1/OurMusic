@@ -72,11 +72,13 @@ public:
         sizePolicy.setVerticalStretch(0);
         sizePolicy.setHeightForWidth(Bmenu->sizePolicy().hasHeightForWidth());
         Bmenu->setSizePolicy(sizePolicy);
+        Bmenu->setCursor(QCursor(Qt::PointingHandCursor));
 
         gridLayout->addWidget(Bmenu, 3, 4, 1, 1);
 
         Bpause = new QPushButton(centralWidget);
         Bpause->setObjectName(QStringLiteral("Bpause"));
+        Bpause->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon;
         icon.addFile(QStringLiteral(":/res/start.png"), QSize(), QIcon::Normal, QIcon::Off);
         Bpause->setIcon(icon);
@@ -90,12 +92,14 @@ public:
         sizePolicy1.setVerticalStretch(0);
         sizePolicy1.setHeightForWidth(volume_btn->sizePolicy().hasHeightForWidth());
         volume_btn->setSizePolicy(sizePolicy1);
+        volume_btn->setCursor(QCursor(Qt::PointingHandCursor));
         volume_btn->setStyleSheet(QStringLiteral("QPushButton{border-image: url(:/res/volume.png);}"));
 
         gridLayout->addWidget(volume_btn, 3, 0, 1, 1);
 
         Blast = new QPushButton(centralWidget);
         Blast->setObjectName(QStringLiteral("Blast"));
+        Blast->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon1;
         icon1.addFile(QStringLiteral(":/res/left.png"), QSize(), QIcon::Normal, QIcon::Off);
         Blast->setIcon(icon1);
@@ -104,6 +108,7 @@ public:
 
         Bnext = new QPushButton(centralWidget);
         Bnext->setObjectName(QStringLiteral("Bnext"));
+        Bnext->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon2;
         icon2.addFile(QStringLiteral(":/res/right.png"), QSize(), QIcon::Normal, QIcon::Off);
         Bnext->setIcon(icon2);
@@ -117,6 +122,7 @@ public:
 
         horizontalSlider = new QSlider(centralWidget);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
+        horizontalSlider->setCursor(QCursor(Qt::OpenHandCursor));
         horizontalSlider->setMouseTracking(true);
         horizontalSlider->setOrientation(Qt::Horizontal);
 
@@ -129,6 +135,7 @@ public:
         sizePolicy2.setVerticalStretch(0);
         sizePolicy2.setHeightForWidth(VolumeSlider->sizePolicy().hasHeightForWidth());
         VolumeSlider->setSizePolicy(sizePolicy2);
+        VolumeSlider->setCursor(QCursor(Qt::OpenHandCursor));
         VolumeSlider->setMouseTracking(true);
         VolumeSlider->setMaximum(100);
         VolumeSlider->setOrientation(Qt::Vertical);
@@ -157,6 +164,7 @@ public:
         sizePolicy4.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
         tableWidget->setSizePolicy(sizePolicy4);
         tableWidget->setMinimumSize(QSize(50, 50));
+        tableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
         tableWidget->horizontalHeader()->setStretchLastSection(true);
 
         gridLayout->addWidget(tableWidget, 0, 4, 3, 1);
