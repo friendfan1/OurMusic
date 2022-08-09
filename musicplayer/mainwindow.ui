@@ -27,13 +27,6 @@
   </property>
   <widget class="QWidget" name="centralWidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="2" column="1" colspan="3">
-     <widget class="QLabel" name="currentmusic">
-      <property name="text">
-       <string/>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="4">
      <widget class="QPushButton" name="Bmenu">
       <property name="sizePolicy">
@@ -50,8 +43,8 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="2">
-     <widget class="QPushButton" name="Bpause">
+    <item row="3" column="1">
+     <widget class="QPushButton" name="Blast">
       <property name="cursor">
        <cursorShape>PointingHandCursor</cursorShape>
       </property>
@@ -60,7 +53,7 @@
       </property>
       <property name="icon">
        <iconset resource="res.qrc">
-        <normaloff>:/res/start.png</normaloff>:/res/start.png</iconset>
+        <normaloff>:/res/left.png</normaloff>:/res/left.png</iconset>
       </property>
      </widget>
     </item>
@@ -86,20 +79,6 @@
       </property>
      </widget>
     </item>
-    <item row="3" column="1">
-     <widget class="QPushButton" name="Blast">
-      <property name="cursor">
-       <cursorShape>PointingHandCursor</cursorShape>
-      </property>
-      <property name="text">
-       <string/>
-      </property>
-      <property name="icon">
-       <iconset resource="res.qrc">
-        <normaloff>:/res/left.png</normaloff>:/res/left.png</iconset>
-      </property>
-     </widget>
-    </item>
     <item row="3" column="3">
      <widget class="QPushButton" name="Bnext">
       <property name="cursor">
@@ -114,23 +93,17 @@
       </property>
      </widget>
     </item>
-    <item row="4" column="0">
-     <widget class="QLabel" name="label">
-      <property name="text">
-       <string>TextLabel</string>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="1" colspan="4">
-     <widget class="QSlider" name="horizontalSlider">
+    <item row="3" column="2">
+     <widget class="QPushButton" name="Bpause">
       <property name="cursor">
-       <cursorShape>OpenHandCursor</cursorShape>
+       <cursorShape>PointingHandCursor</cursorShape>
       </property>
-      <property name="mouseTracking">
-       <bool>true</bool>
+      <property name="text">
+       <string/>
       </property>
-      <property name="orientation">
-       <enum>Qt::Horizontal</enum>
+      <property name="icon">
+       <iconset resource="res.qrc">
+        <normaloff>:/res/start.png</normaloff>:/res/start.png</iconset>
       </property>
      </widget>
     </item>
@@ -156,6 +129,25 @@
       </property>
      </widget>
     </item>
+    <item row="4" column="0" alignment="Qt::AlignRight">
+     <widget class="QLabel" name="label">
+      <property name="minimumSize">
+       <size>
+        <width>72</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="maximumSize">
+       <size>
+        <width>72</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
     <item row="1" column="0">
      <widget class="QLabel" name="volume_label">
       <property name="sizePolicy">
@@ -166,6 +158,19 @@
       </property>
       <property name="text">
        <string>TextLabel</string>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="1" colspan="4">
+     <widget class="QSlider" name="horizontalSlider">
+      <property name="cursor">
+       <cursorShape>OpenHandCursor</cursorShape>
+      </property>
+      <property name="mouseTracking">
+       <bool>true</bool>
+      </property>
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
       </property>
      </widget>
     </item>
@@ -194,6 +199,19 @@
         <string>歌曲名称</string>
        </property>
       </column>
+     </widget>
+    </item>
+    <item row="2" column="1" colspan="3">
+     <widget class="QLabel" name="currentmusic">
+      <property name="maximumSize">
+       <size>
+        <width>336</width>
+        <height>16777215</height>
+       </size>
+      </property>
+      <property name="text">
+       <string/>
+      </property>
      </widget>
     </item>
    </layout>
