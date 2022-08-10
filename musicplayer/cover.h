@@ -14,7 +14,7 @@ class Cover:public QWidget
 public:
     Cover(QWidget *parent = 0);
     //QPixmap pix;
-    QString filename = ":/res/OurMusic.jpg";
+    QString filename = ":/res/OurMusic.png";
     QPixmap pixmapToRound(QPixmap &src, int radius);//封面剪裁圆形
     void Setfilename(QString _filename);//文件名称
     void SetAngle(int _angle);//设置角度

@@ -42,6 +42,7 @@ HEADERS += \
     stylus.h \
     stylusandrecord.h \
     cover.h \
+    mycover.h \
     mycover.h
     cover.h \
 

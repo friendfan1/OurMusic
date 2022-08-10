@@ -6,8 +6,8 @@
    <rect>
     <x>0</x>
     <y>0</y>
-    <width>700</width>
-    <height>600</height>
+    <width>710</width>
+    <height>617</height>
    </rect>
   </property>
   <property name="minimumSize">
@@ -27,16 +27,16 @@
   </property>
   <property name="windowIcon">
    <iconset resource="res.qrc">
-    <normaloff>:/res/OurMusic.jpg</normaloff>:/res/OurMusic.jpg</iconset>
+    <normaloff>:/res/OurMusic.png</normaloff>:/res/OurMusic.png</iconset>
   </property>
   <widget class="QWidget" name="centralWidget">
    <widget class="QLabel" name="currentmusic">
     <property name="geometry">
      <rect>
-      <x>110</x>
-      <y>420</y>
-      <width>291</width>
-      <height>17</height>
+      <x>90</x>
+      <y>390</y>
+      <width>338</width>
+      <height>71</height>
      </rect>
     </property>
     <property name="sizePolicy">
@@ -156,9 +156,9 @@
    <widget class="QWidget" name="layoutWidget">
     <property name="geometry">
      <rect>
-      <x>0</x>
+      <x>10</x>
       <y>360</y>
-      <width>74</width>
+      <width>81</width>
       <height>141</height>
      </rect>
     </property>
@@ -189,6 +189,40 @@
        </property>
        <property name="mouseTracking">
         <bool>true</bool>
+       </property>
+       <property name="styleSheet">
+        <string notr="true">
+
+QSlider::groove:vertical
+{
+	background: #cbcbcb; 
+	width: 6px; 
+	border-radius: 1px; 
+	padding-left:-1px; 
+	padding-right:-1px; 
+	padding-top:4px; 
+	padding-bottom:4px; 
+}
+
+QSlider::sub-page:vertical 
+{
+	background: #cbcbcb; 
+	border-radius: 2px; 
+}
+QSlider::add-page:vertical
+{
+	background-color: rgb(90,49,255);
+	width: 10px; 
+	border-radius: 2px; 
+}
+
+QSlider::handle:vertical
+{ 
+	border-color: rgb(0, 255, 255);
+	border-image: url(:/res/sliderbtn.png);				
+	margin: -4px -8px -4px -8px; 
+	height: 20px; 
+}</string>
        </property>
        <property name="maximum">
         <number>100</number>
@@ -324,6 +358,72 @@
        <property name="mouseTracking">
         <bool>true</bool>
        </property>
+       <property name="styleSheet">
+        <string notr="true">/*horizontal ：水平QSlider*/
+QSlider::groove:horizontal {
+border: 0px solid #bbb;
+}
+
+/*1.滑动过的槽设计参数*/
+QSlider::sub-page:horizontal {
+ /*槽颜色*/
+background: rgb(90,49,255);
+ /*外环区域倒圆角度*/
+border-radius: 2px;
+ /*上遮住区域高度*/
+margin-top:8px;
+ /*下遮住区域高度*/
+margin-bottom:8px;
+/*width在这里无效，不写即可*/
+}
+
+/*2.未滑动过的槽设计参数*/
+QSlider::add-page:horizontal {
+/*槽颜色*/
+background: rgb(255,255, 255);
+/*外环大小0px就是不显示，默认也是0*/
+border: 0px solid #777;
+/*外环区域倒圆角度*/
+border-radius: 2px;
+ /*上遮住区域高度*/
+margin-top:9px;
+ /*下遮住区域高度*/
+margin-bottom:9px;
+}
+ 
+/*3.平时滑动的滑块设计参数*/
+QSlider::handle:horizontal {
+/*滑块颜色*/
+background: rgb(193,204,208);
+/*滑块的宽度*/
+width: 5px;
+/*滑块外环为1px，再加颜色*/
+border: 1px solid rgb(193,204,208);
+ /*滑块外环倒圆角度*/
+border-radius: 2px; 
+ /*上遮住区域高度*/
+margin-top:6px;
+ /*下遮住区域高度*/
+margin-bottom:6px;
+}
+
+/*4.手动拉动时显示的滑块设计参数*/
+QSlider::handle:horizontal:hover {
+/*滑块颜色*/
+background: rgb(193,204,208);
+/*滑块的宽度*/
+width: 10px;
+/*滑块外环为1px，再加颜色*/
+border: 1px solid rgb(193,204,208);
+ /*滑块外环倒圆角度*/
+border-radius: 5px; 
+ /*上遮住区域高度*/
+margin-top:4px;
+ /*下遮住区域高度*/
+margin-bottom:4px;
+}
+</string>
+       </property>
        <property name="orientation">
         <enum>Qt::Horizontal</enum>
        </property>
@@ -337,7 +437,7 @@
     <rect>
      <x>0</x>
      <y>0</y>
-     <width>700</width>
+     <width>710</width>
      <height>26</height>
     </rect>
    </property>

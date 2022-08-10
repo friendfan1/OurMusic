@@ -17,6 +17,7 @@
 #include"stylusandrecord.h"
 #include<QTimer>
 #include "stylus.h"
+#include"mycover.h"
 
 namespace Ui {
 class MainWindow;
@@ -35,6 +36,7 @@ public:
     QTimer *m_timer;
     //QTimer *T_timer;
     MP3Header mp3;
+    MyCover *test;
 
 private:
     Ui::MainWindow *ui;

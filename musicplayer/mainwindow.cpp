@@ -36,7 +36,6 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotButtonnext);
     connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotButtonpre);
     connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
-
     connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
     connect(m_timer,&QTimer::timeout,[=](){
        update();
@@ -75,7 +74,6 @@ void MainWindow::init(){
     connect(player,SIGNAL(positionChanged(qint64)),this,SLOT(slotPositionChange(qint64)));//播放进度改变对应进度条改变
     connect(ui->horizontalSlider,SIGNAL(sliderMoved(int)),this,SLOT(slotSliderMove(int)));//拖动时改变进度条的数字，但是不改变进度，否则音乐播放会卡
     connect(ui->horizontalSlider,SIGNAL(sliderReleased()),this,SLOT(slotSliderChange()));//松开进度条，改变播放进度
-
     player->setVolume(100);
     ui->volume_label->setText("100");
     ui->VolumeSlider->setValue(player->volume());
@@ -214,6 +212,6 @@ void MainWindow::slotPixShow(){
     //这里有问题 如果写成else if(x == 2)cover->Setfilename("music\\test2.jpg");导致jpg文件不显示
     cover->Setfilename("music\\test2.jpg");
     if(x == 3){cover->Setfilename("music\\test3.png");}
-    if(x == 1){cover->Setfilename(":/res/OurMusic.jpg");}
+    if(x == 1){cover->Setfilename(":/res/OurMusic.png");}
     qDebug() << x;
 }

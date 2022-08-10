@@ -11,5 +11,7 @@
         <file>res/stylus.png</file>
         <file>res/justify.svg</file>
         <file>res/OurMusic.jpg</file>
+        <file>res/OurMusic.png</file>
+        <file>res/sliderbtn.png</file>
     </qresource>
 </RCC>
