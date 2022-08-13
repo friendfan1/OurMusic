@@ -13,5 +13,6 @@
         <file>res/OurMusic.jpg</file>
         <file>res/OurMusic.png</file>
         <file>res/sliderbtn.png</file>
+        <file>res/add-to-list.svg</file>
     </qresource>
 </RCC>

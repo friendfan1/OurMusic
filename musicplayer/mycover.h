@@ -1,7 +1,8 @@
-#ifndef MYCOVER_H
+﻿#ifndef MYCOVER_H
 #define MYCOVER_H
 
 #include <QWidget>
+#include <QPainter>
 
 namespace Ui {
 class MyCover;

@@ -8,13 +8,14 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
+
     cover = new Cover(this);
     StyandRe = new StylusandRecord(this);
     Sty = new Stylus(this);
 
-    cover->move(177,162);
+    cover->move(155,140);
     StyandRe->move(80,65);
-    Sty->move(80,-140);
+    Sty->move(80,-150);
     m_timer=new QTimer(this);
     m_timer->start(10);
     connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotButtonStart);
@@ -36,14 +37,16 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotButtonnext);
     connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotButtonpre);
     connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
-    connect(ui->tableWidget,QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
+    connect(ui->tableWidget,&QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
     connect(m_timer,&QTimer::timeout,[=](){
        update();
     });
-    
+    connect(ui->AddtoList,&QPushButton::clicked,this,&MainWindow::slotCopySong);
+
 
     init();     //初始化
     ui->tableWidget->hide();
+
 }
 
 MainWindow::~MainWindow()
@@ -84,6 +87,39 @@ void MainWindow::init(){
     connect(playerlist,&QMediaPlaylist::currentIndexChanged,[=]{
         cover->SetAngle(0);
     });
+
+    test = new MyCover(this);
+    test->move(0,0);
+
+    buttonAction1 = new QAction("从列表中删除",this);
+    buttonAction2 = new QAction("彻底删除",this);
+
+    //初始化菜单
+    buttonMenu = new QMenu(this);
+    //动作添加到菜单
+    buttonMenu->addAction(buttonAction1);
+    buttonMenu->addAction(buttonAction2);
+
+    //给动作设置信号槽
+    connect(buttonAction1, &QAction::triggered, this, &MainWindow::slotDeleteSongList);
+//    connect(buttonAction2, &QAction::triggered, this, &MainWindow::slotDeleteSongFile);
+
+    ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
+    connect(ui->tableWidget,&QPushButton::customContextMenuRequested,[=](const QPoint &pos)
+    {
+        qDebug()<<pos;
+        int rowindex;
+        QList<QTableWidgetItem*> items = ui->tableWidget->selectedItems();
+        if(!items.empty()) //表格有某行被选中
+        {
+            // 获取该行的行号
+            rowindex = ui->tableWidget->row(items.at(0));
+            rowSelect = rowindex;
+        }
+
+        buttonMenu->exec(QCursor::pos());
+    });
+
 }
 
 QStringList MainWindow::getFileNames(const QString &path){
@@ -213,5 +249,62 @@ void MainWindow::slotPixShow(){
     cover->Setfilename("music\\test2.jpg");
     if(x == 3){cover->Setfilename("music\\test3.png");}
     if(x == 1){cover->Setfilename(":/res/OurMusic.png");}
-    qDebug() << x;
 }
+
+void MainWindow::slotCopySong(){
+    QStringList path_list = QFileDialog::getOpenFileNames(this, tr("open file"), " ",  tr("MP3文件(*.mp3)"));
+    for(int i = 0; i < path_list.size();i++){
+        qDebug() << path_list.at(i);
+        QFileInfo newFile = QFileInfo(path_list.at(i));
+        QString dstPath = newFile.fileName();
+        QFile::copy(path_list.at(i),"music\\" + dstPath);
+        addItem(dstPath);
+        filelist.append(dstPath);
+        playerlist->addMedia(QUrl::fromLocalFile(MusicPath+"\\"+dstPath));
+    }
+}
+
+void MainWindow::slotDeleteSongList(){
+    qDebug() << rowSelect;
+    qDebug() << playerlist->currentIndex();
+    int position=ui->horizontalSlider->value();
+    double rale = cover->getAngle();
+    qDebug() << "进度：" << position;
+    int index = playerlist->currentIndex();
+    if(rowSelect == index || filelist.size() <= 1){
+    QMessageBox::information(this,
+        "错误提示",
+        "歌曲正在播放或者只有一首歌时暂时不支持从列表清除歌曲，请等待版本更新");
+        return;
+    }
+    if(rowSelect < index){
+        player->stop();
+        playerlist->setCurrentIndex(0);
+        playerlist->moveMedia(index,rowSelect);
+        playerlist->removeMedia(rowSelect + 1);
+        filelist.removeAt(rowSelect);
+        playerlist->setCurrentIndex(0);
+        playerlist->moveMedia(rowSelect,index - 1);
+        playerlist->setCurrentIndex(index - 1);
+        player->setPosition(position + 470);
+
+    }
+    if(rowSelect > index){
+        playerlist->removeMedia(rowSelect);
+        filelist.removeAt(rowSelect);
+    }
+    cover->SetAngle(rale);
+    player->play();
+    //player->setPlaybackRate(qreal(0.5));
+    ui->tableWidget->removeRow(rowSelect);
+
+}
+
+//void MainWindow::slotDeleteSongFile(){
+//    playerlist->removeMedia(rowSelect);
+//    QString path = "music\\" + filelist.at(rowSelect);
+//    filelist.removeAt(rowSelect);
+//    ui->tableWidget->removeRow(rowSelect);
+//    QFile::remove(path);
+//}
+

@@ -18,6 +18,11 @@
 #include<QTimer>
 #include "stylus.h"
 #include"mycover.h"
+#include<QString>
+#include<QStringList>
+#include<QFileDialog>
+#include<QFile>
+#include <QMessageBox>
 
 namespace Ui {
 class MainWindow;
@@ -52,6 +57,14 @@ private:
 
     LyricWidget* lyric_widget;
 
+    //声明动作
+    QAction * buttonAction1;
+    QAction * buttonAction2;
+    //声明菜单
+    QMenu * buttonMenu;
+
+    //右键所选到的行数
+    int rowSelect;
 private slots:
     void init();
     void addItem(QString name); //添加歌曲数目
@@ -70,6 +83,11 @@ private slots:
     void slotVolumeSliderChange(int);//音量条拖动事件
 
     void slotPixShow();//显示专辑封面
+
+    void slotCopySong();//新增歌曲进入播放列表
+
+    void slotDeleteSongList();//从列表中删除歌曲
+    //void slotDeleteSongFile();//从文件中删除
 
 };
 

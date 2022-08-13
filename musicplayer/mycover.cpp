@@ -1,4 +1,4 @@
-#include "mycover.h"
+﻿#include "mycover.h"
 #include "ui_mycover.h"
 
 MyCover::MyCover(QWidget *parent) :
@@ -12,3 +12,6 @@ MyCover::~MyCover()
 {
     delete ui;
 }
+
+
+

@@ -3,7 +3,7 @@
 
 Cover::Cover(QWidget *parent)
     : QWidget(parent){
-    setFixedSize(127,127);
+    setFixedSize(170,170);
 }
 
 QPixmap Cover::pixmapToRound(QPixmap &src, int radius)
@@ -63,4 +63,8 @@ void Cover::Setfilename(QString _filename){
 
 void Cover::SetAngle(int _angle){
     angle = _angle;
+}
+
+double Cover::getAngle(){
+    return angle;
 }

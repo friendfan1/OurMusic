@@ -46,13 +46,14 @@ public:
     QSlider *VolumeSlider;
     QPushButton *volume_btn;
     QWidget *layoutWidget2;
-    QVBoxLayout *verticalLayout_2;
-    QTableWidget *tableWidget;
-    QPushButton *Bmenu;
-    QWidget *layoutWidget3;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QSlider *horizontalSlider;
+    QTableWidget *tableWidget;
+    QWidget *layoutWidget3;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *AddtoList;
+    QPushButton *Bmenu;
     QMenuBar *menuBar;
     QStatusBar *statusBar;
 
@@ -201,57 +202,20 @@ public:
 
         layoutWidget2 = new QWidget(centralWidget);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(430, 11, 258, 491));
-        verticalLayout_2 = new QVBoxLayout(layoutWidget2);
-        verticalLayout_2->setSpacing(6);
-        verticalLayout_2->setContentsMargins(11, 11, 11, 11);
-        verticalLayout_2->setObjectName(QStringLiteral("verticalLayout_2"));
-        verticalLayout_2->setContentsMargins(0, 0, 0, 0);
-        tableWidget = new QTableWidget(layoutWidget2);
-        if (tableWidget->columnCount() < 1)
-            tableWidget->setColumnCount(1);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
-        tableWidget->setSizePolicy(sizePolicy4);
-        tableWidget->setMinimumSize(QSize(50, 50));
-        tableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
-        tableWidget->horizontalHeader()->setStretchLastSection(true);
-
-        verticalLayout_2->addWidget(tableWidget);
-
-        Bmenu = new QPushButton(layoutWidget2);
-        Bmenu->setObjectName(QStringLiteral("Bmenu"));
-        sizePolicy.setHeightForWidth(Bmenu->sizePolicy().hasHeightForWidth());
-        Bmenu->setSizePolicy(sizePolicy);
-        Bmenu->setCursor(QCursor(Qt::PointingHandCursor));
-        QIcon icon4;
-        icon4.addFile(QStringLiteral(":/res/justify.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        Bmenu->setIcon(icon4);
-        Bmenu->setFlat(true);
-
-        verticalLayout_2->addWidget(Bmenu, 0, Qt::AlignHCenter|Qt::AlignBottom);
-
-        layoutWidget3 = new QWidget(centralWidget);
-        layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
-        layoutWidget3->setGeometry(QRect(0, 510, 671, 24));
-        horizontalLayout_2 = new QHBoxLayout(layoutWidget3);
+        layoutWidget2->setGeometry(QRect(0, 510, 671, 24));
+        horizontalLayout_2 = new QHBoxLayout(layoutWidget2);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
         horizontalLayout_2->setObjectName(QStringLiteral("horizontalLayout_2"));
         horizontalLayout_2->setContentsMargins(0, 0, 0, 0);
-        label = new QLabel(layoutWidget3);
+        label = new QLabel(layoutWidget2);
         label->setObjectName(QStringLiteral("label"));
         label->setMinimumSize(QSize(72, 0));
         label->setMaximumSize(QSize(72, 16777215));
 
         horizontalLayout_2->addWidget(label);
 
-        horizontalSlider = new QSlider(layoutWidget3);
+        horizontalSlider = new QSlider(layoutWidget2);
         horizontalSlider->setObjectName(QStringLiteral("horizontalSlider"));
         horizontalSlider->setCursor(QCursor(Qt::PointingHandCursor));
         horizontalSlider->setMouseTracking(true);
@@ -326,6 +290,54 @@ public:
 
         horizontalLayout_2->addWidget(horizontalSlider);
 
+        tableWidget = new QTableWidget(centralWidget);
+        if (tableWidget->columnCount() < 1)
+            tableWidget->setColumnCount(1);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setGeometry(QRect(440, 31, 256, 411));
+        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Expanding);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy4);
+        tableWidget->setMinimumSize(QSize(50, 50));
+        tableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
+        tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tableWidget->horizontalHeader()->setStretchLastSection(true);
+        layoutWidget3 = new QWidget(centralWidget);
+        layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
+        layoutWidget3->setGeometry(QRect(480, 470, 155, 31));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget3);
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        AddtoList = new QPushButton(layoutWidget3);
+        AddtoList->setObjectName(QStringLiteral("AddtoList"));
+        sizePolicy.setHeightForWidth(AddtoList->sizePolicy().hasHeightForWidth());
+        AddtoList->setSizePolicy(sizePolicy);
+        AddtoList->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon4;
+        icon4.addFile(QStringLiteral(":/res/add-to-list.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        AddtoList->setIcon(icon4);
+        AddtoList->setFlat(true);
+
+        horizontalLayout_3->addWidget(AddtoList);
+
+        Bmenu = new QPushButton(layoutWidget3);
+        Bmenu->setObjectName(QStringLiteral("Bmenu"));
+        sizePolicy.setHeightForWidth(Bmenu->sizePolicy().hasHeightForWidth());
+        Bmenu->setSizePolicy(sizePolicy);
+        Bmenu->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon5;
+        icon5.addFile(QStringLiteral(":/res/justify.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        Bmenu->setIcon(icon5);
+        Bmenu->setFlat(true);
+
+        horizontalLayout_3->addWidget(Bmenu);
+
         MainWindow->setCentralWidget(centralWidget);
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
@@ -361,13 +373,17 @@ public:
         volume_btn->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>\345\215\225\345\207\273\345\274\200\345\220\257\351\235\231\351\237\263</p></body></html>", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         volume_btn->setText(QString());
+        label->setText(QApplication::translate("MainWindow", "00:00", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\220\215\347\247\260", Q_NULLPTR));
+#ifndef QT_NO_TOOLTIP
+        AddtoList->setToolTip(QApplication::translate("MainWindow", "\346\226\260\345\242\236\351\237\263\344\271\220", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        AddtoList->setText(QString());
 #ifndef QT_NO_TOOLTIP
         Bmenu->setToolTip(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\210\227\350\241\250", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         Bmenu->setText(QString());
-        label->setText(QApplication::translate("MainWindow", "00:00", Q_NULLPTR));
     } // retranslateUi
 
 };

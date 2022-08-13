@@ -19,6 +19,7 @@ public:
     void Setfilename(QString _filename);//文件名称
     void SetAngle(int _angle);//设置角度
     bool isPlay = false;//用于设置是否专辑封面是否转圈
+    double getAngle();
 protected:
     void paintEvent(QPaintEvent *);//绘图事件
 private:
