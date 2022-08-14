@@ -305,6 +305,7 @@ public:
         tableWidget->setMinimumSize(QSize(50, 50));
         tableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
         tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
         tableWidget->horizontalHeader()->setStretchLastSection(true);
         layoutWidget3 = new QWidget(centralWidget);
         layoutWidget3->setObjectName(QStringLiteral("layoutWidget3"));
