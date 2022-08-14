@@ -127,7 +127,6 @@ int MP3Header::GetPic(const wchar_t *path)
             }
 
             //是以JPEG格式存在，则存储为jpeg的文件
-            qDebug() << lID3V2Fra_length;
             if (start != lID3V2Fra_length)
             {
 

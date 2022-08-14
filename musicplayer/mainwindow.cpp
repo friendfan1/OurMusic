@@ -21,7 +21,7 @@ MainWindow::MainWindow(QWidget *parent) :
     connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotButtonStart);
     connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotPixShow);
     connect(ui->Bpause,&QPushButton::clicked,[=]{
-        m_timer->start(10);
+        //m_timer->start(10);
         if(isplay == true){
             cover->isPlay = true;
             StyandRe->isPlay = true;
@@ -58,7 +58,6 @@ void MainWindow::init(){
     playerlist = new QMediaPlaylist;//播放列表
     player = new QMediaPlayer;
     filelist = getFileNames(this->MusicPath);//获取文件夹下的所有文件
-    qDebug()<<filelist;
     for(int i = 0;i<filelist.size();i++){//输出音乐文件到播放列表
         QString fileName = filelist.at(i);
         addItem(fileName);
@@ -107,7 +106,6 @@ void MainWindow::init(){
     ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableWidget,&QPushButton::customContextMenuRequested,[=](const QPoint &pos)
     {
-        qDebug()<<pos;
         int rowindex;
         QList<QTableWidgetItem*> items = ui->tableWidget->selectedItems();
         if(!items.empty()) //表格有某行被选中
@@ -116,7 +114,6 @@ void MainWindow::init(){
             rowindex = ui->tableWidget->row(items.at(0));
             rowSelect = rowindex;
         }
-
         buttonMenu->exec(QCursor::pos());
     });
 
@@ -245,6 +242,7 @@ void MainWindow::slotPixShow(){
     QString LfileName = MusicPath+"\\"+fileName;
     const wchar_t * url = reinterpret_cast<const wchar_t *>(LfileName.utf16());
     int x = mp3.GetPic(url);
+    qDebug() << x;
     //这里有问题 如果写成else if(x == 2)cover->Setfilename("music\\test2.jpg");导致jpg文件不显示
     cover->Setfilename("music\\test2.jpg");
     if(x == 3){cover->Setfilename("music\\test3.png");}
@@ -254,7 +252,6 @@ void MainWindow::slotPixShow(){
 void MainWindow::slotCopySong(){
     QStringList path_list = QFileDialog::getOpenFileNames(this, tr("open file"), " ",  tr("MP3文件(*.mp3)"));
     for(int i = 0; i < path_list.size();i++){
-        qDebug() << path_list.at(i);
         QFileInfo newFile = QFileInfo(path_list.at(i));
         QString dstPath = newFile.fileName();
         QFile::copy(path_list.at(i),"music\\" + dstPath);
@@ -265,11 +262,8 @@ void MainWindow::slotCopySong(){
 }
 
 void MainWindow::slotDeleteSongList(){
-    qDebug() << rowSelect;
-    qDebug() << playerlist->currentIndex();
     int position=ui->horizontalSlider->value();
     double rale = cover->getAngle();
-    qDebug() << "进度：" << position;
     int index = playerlist->currentIndex();
     if(rowSelect == index || filelist.size() <= 1){
     QMessageBox::information(this,
@@ -297,6 +291,9 @@ void MainWindow::slotDeleteSongList(){
     player->play();
     //player->setPlaybackRate(qreal(0.5));
     ui->tableWidget->removeRow(rowSelect);
+    m_timer->stop();
+    m_timer->start();
+    slotPixShow();
 
 }
 
