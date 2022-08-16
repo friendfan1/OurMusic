@@ -39,3 +39,5 @@
 3. [jpeg格式解析可以参考博文](https://blog.csdn.net/u012819339/article/details/46544061)
 
 4. [png格式解析可以参考博文](https://blog.csdn.net/bisword/article/details/2777121)
+
+5. [git中的needs merge问题](https://www.cnblogs.com/zengsf/p/7517769.html)
