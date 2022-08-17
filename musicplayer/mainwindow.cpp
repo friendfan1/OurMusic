@@ -42,6 +42,7 @@ MainWindow::MainWindow(QWidget *parent) :
        update();
     });
     connect(ui->AddtoList,&QPushButton::clicked,this,&MainWindow::slotCopySong);
+    connect(ui->playMode,&QPushButton::clicked,this,&MainWindow::slotChangePlayMode);
 
 
     init();     //初始化
@@ -90,8 +91,8 @@ void MainWindow::init(){
     test = new MyCover(this);
     test->move(0,0);
 
-    buttonAction1 = new QAction("从列表中删除",this);
-    buttonAction2 = new QAction("彻底删除",this);
+    buttonAction1 = new QAction("播放",this);
+    buttonAction2 = new QAction("从列表中删除",this);
 
     //初始化菜单
     buttonMenu = new QMenu(this);
@@ -100,8 +101,21 @@ void MainWindow::init(){
     buttonMenu->addAction(buttonAction2);
 
     //给动作设置信号槽
-    connect(buttonAction1, &QAction::triggered, this, &MainWindow::slotDeleteSongList);
-//    connect(buttonAction2, &QAction::triggered, this, &MainWindow::slotDeleteSongFile);
+    connect(buttonAction1, &QAction::triggered, [=]{
+        slotChooseMusic();
+        if(!isplay){
+            isplay = true;
+            cover->isPlay = true;
+            StyandRe->isPlay = true;
+            Sty->isPlay = true;
+            playerlist->setCurrentIndex(rowSelect);
+            player->play();
+            ui->Bpause->setIcon(QIcon(":/res/pause.png"));
+            player->play();
+        }
+
+    });
+    connect(buttonAction2, &QAction::triggered, this, &MainWindow::slotDeleteSongList);
 
     ui->tableWidget->setContextMenuPolicy(Qt::CustomContextMenu);
     connect(ui->tableWidget,&QPushButton::customContextMenuRequested,[=](const QPoint &pos)
@@ -140,7 +154,7 @@ void MainWindow::slotButtonStart(){
 }
 
 void MainWindow::slotButtonnext(){
-    if(playerlist->currentIndex()<filelist.size()-1){
+    if(playerlist->currentIndex()<filelist.size()-1 || modeNow == loop || modeNow == shuffle){
         playerlist->next();
         playerlist->nextIndex();
     }
@@ -272,7 +286,6 @@ void MainWindow::slotDeleteSongList(){
         return;
     }
     if(rowSelect < index){
-        player->stop();
         playerlist->setCurrentIndex(0);
         playerlist->moveMedia(index,rowSelect);
         playerlist->removeMedia(rowSelect + 1);
@@ -280,7 +293,7 @@ void MainWindow::slotDeleteSongList(){
         playerlist->setCurrentIndex(0);
         playerlist->moveMedia(rowSelect,index - 1);
         playerlist->setCurrentIndex(index - 1);
-        player->setPosition(position + 470);
+        player->setPosition(position + 570);
 
     }
     if(rowSelect > index){
@@ -291,17 +304,36 @@ void MainWindow::slotDeleteSongList(){
     player->play();
     //player->setPlaybackRate(qreal(0.5));
     ui->tableWidget->removeRow(rowSelect);
-    m_timer->stop();
-    m_timer->start();
     slotPixShow();
 
 }
 
-//void MainWindow::slotDeleteSongFile(){
-//    playerlist->removeMedia(rowSelect);
-//    QString path = "music\\" + filelist.at(rowSelect);
-//    filelist.removeAt(rowSelect);
-//    ui->tableWidget->removeRow(rowSelect);
-//    QFile::remove(path);
-//}
-
+void MainWindow::slotChangePlayMode(){
+    if(modeNowInt == 3)modeNowInt = -1;
+    ++modeNowInt;
+    modeNow = (playMode)modeNowInt;
+    switch (modeNow) {
+    case Sequential:
+        playerlist->setPlaybackMode(QMediaPlaylist::Sequential);
+        ui->playMode->setIcon(QIcon(":/res/Sequential.svg"));
+        ui->playMode->setToolTip("列表播放");
+        break;
+    case shuffle:
+        playerlist->setPlaybackMode(QMediaPlaylist::Random);
+        ui->playMode->setIcon(QIcon(":/res/shuffle.png"));
+        ui->playMode->setToolTip("随机播放");
+        break;
+    case currentloop:
+        playerlist->setPlaybackMode(QMediaPlaylist::CurrentItemInLoop);
+        ui->playMode->setIcon(QIcon(":/res/currentloop.png"));
+        ui->playMode->setToolTip("单曲循环");
+        break;
+    case loop:
+        playerlist->setPlaybackMode(QMediaPlaylist::Loop);
+        ui->playMode->setIcon(QIcon(":/res/loop.png"));
+        ui->playMode->setToolTip("列表循环");
+        break;
+    default:
+        break;
+    }
+}

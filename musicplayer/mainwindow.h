@@ -62,9 +62,12 @@ private:
     QAction * buttonAction2;
     //声明菜单
     QMenu * buttonMenu;
-
     //右键所选到的行数
     int rowSelect;
+
+    //播放模式
+    enum playMode {Sequential, shuffle, currentloop, loop}modeNow;
+    int modeNowInt = 0;
 private slots:
     void init();
     void addItem(QString name); //添加歌曲数目
@@ -85,9 +88,10 @@ private slots:
     void slotPixShow();//显示专辑封面
 
     void slotCopySong();//新增歌曲进入播放列表
-
     void slotDeleteSongList();//从列表中删除歌曲
-    //void slotDeleteSongFile();//从文件中删除
+
+    void slotChangePlayMode();
+
 
 };
 

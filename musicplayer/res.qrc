@@ -14,5 +14,9 @@
         <file>res/OurMusic.png</file>
         <file>res/sliderbtn.png</file>
         <file>res/add-to-list.svg</file>
+        <file>res/currentloop.png</file>
+        <file>res/loop.png</file>
+        <file>res/Sequential.svg</file>
+        <file>res/shuffle.png</file>
     </qresource>
 </RCC>
