@@ -42,6 +42,8 @@ public:
     //QTimer *T_timer;
     MP3Header mp3;
     MyCover *test;
+    QPushButton *CovBtn;
+
 
 private:
     Ui::MainWindow *ui;
@@ -68,6 +70,10 @@ private:
     //播放模式
     enum playMode {Sequential, shuffle, currentloop, loop}modeNow;
     int modeNowInt = 0;
+
+    //切换封面与歌词的标记
+    bool isCov = true;
+
 private slots:
     void init();
     void addItem(QString name); //添加歌曲数目
@@ -90,9 +96,18 @@ private slots:
     void slotCopySong();//新增歌曲进入播放列表
     void slotDeleteSongList();//从列表中删除歌曲
 
-    void slotChangePlayMode();
+    void slotChangePlayMode();//切换歌曲播放模式
 
+    void slotChangeCovorLyc();
 
+public:
+    void Cover_init();//封面显示功能初始化
+    void CovBtn_init();//按钮初始化
+
+    void Cover_hide();//隐藏封面
+    void Cover_show();//隐藏封面
 };
+
+
 
 #endif // MAINWINDOW_H

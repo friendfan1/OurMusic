@@ -28,7 +28,7 @@ void LyricWidget::loadLyric(QMediaPlayer *player,QString filename){
     reader.open(QIODevice::ReadOnly|QIODevice::Text);
     if(!reader.isOpen()){
         IsLrcExist=false;
-        lyric_label->setText("");//无歌词文件，则显示为空白
+        lyric_label->setText("还没有歌词哦");//无歌词文件，则显示为空白
         return;
     }else{
         IsLrcExist=true;

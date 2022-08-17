@@ -8,42 +8,10 @@ MainWindow::MainWindow(QWidget *parent) :
 {
     ui->setupUi(this);
 
-
-    cover = new Cover(this);
-    StyandRe = new StylusandRecord(this);
-    Sty = new Stylus(this);
-
-    cover->move(155,140);
-    StyandRe->move(80,65);
-    Sty->move(80,-150);
     m_timer=new QTimer(this);
     m_timer->start(10);
-    connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotButtonStart);
-    connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotPixShow);
-    connect(ui->Bpause,&QPushButton::clicked,[=]{
-        //m_timer->start(10);
-        if(isplay == true){
-            cover->isPlay = true;
-            StyandRe->isPlay = true;
-            Sty->isPlay = true;
-        }
-        else{
-            cover->isPlay = false;
-            StyandRe->isPlay = false;
-            Sty->isPlay = false;
-        }
-
-    });
-    connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotButtonnext);
-    connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotButtonpre);
-    connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
-    connect(ui->tableWidget,&QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
-    connect(m_timer,&QTimer::timeout,[=](){
-       update();
-    });
-    connect(ui->AddtoList,&QPushButton::clicked,this,&MainWindow::slotCopySong);
-    connect(ui->playMode,&QPushButton::clicked,this,&MainWindow::slotChangePlayMode);
-
+    Cover_init();
+    CovBtn_init();
 
     init();     //初始化
     ui->tableWidget->hide();
@@ -56,6 +24,19 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::init(){
+    connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotButtonStart);
+    connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotPixShow);
+    connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotButtonnext);
+    connect(ui->Blast,&QPushButton::clicked,this,&MainWindow::slotButtonpre);
+    connect(ui->Bmenu,&QPushButton::clicked,this,&MainWindow::slotButtonshow);
+    connect(ui->tableWidget,&QTableWidget::itemDoubleClicked,this,&MainWindow::slotChooseMusic);
+    connect(m_timer,&QTimer::timeout,[=](){
+       update();
+    });
+    connect(ui->AddtoList,&QPushButton::clicked,this,&MainWindow::slotCopySong);
+    connect(ui->playMode,&QPushButton::clicked,this,&MainWindow::slotChangePlayMode);
+
+
     playerlist = new QMediaPlaylist;//播放列表
     player = new QMediaPlayer;
     filelist = getFileNames(this->MusicPath);//获取文件夹下的所有文件
@@ -130,7 +111,8 @@ void MainWindow::init(){
         }
         buttonMenu->exec(QCursor::pos());
     });
-
+    lyric_widget->move(200,200);
+    lyric_widget->hide();
 }
 
 QStringList MainWindow::getFileNames(const QString &path){
@@ -337,3 +319,65 @@ void MainWindow::slotChangePlayMode(){
         break;
     }
 }
+
+void MainWindow::Cover_init(){
+    cover = new Cover(this);
+    StyandRe = new StylusandRecord(this);
+    Sty = new Stylus(this);
+
+    cover->move(155,140);
+    StyandRe->move(80,65);
+    Sty->move(80,-150);
+
+    connect(ui->Bpause,&QPushButton::clicked,[=]{
+        //m_timer->start(10);
+        if(isplay == true){
+            cover->isPlay = false;
+            StyandRe->isPlay = false;
+            Sty->isPlay = false;
+        }
+        else{
+            cover->isPlay = true;
+            StyandRe->isPlay = true;
+            Sty->isPlay = true;
+        }
+
+    });
+}
+
+void MainWindow::CovBtn_init(){
+    CovBtn = new QPushButton(this);
+    CovBtn->setFixedSize(270,270);
+    CovBtn->setObjectName("CovBtn");
+    CovBtn->setFlat(true);
+    CovBtn->setStyleSheet("QPushButton{border:none;background:transparent;}");
+    CovBtn->setCursor(Qt::PointingHandCursor);
+    CovBtn->move(100,100);
+    connect(CovBtn,&QPushButton::clicked,this,&MainWindow::slotChangeCovorLyc);
+}
+
+void MainWindow::slotChangeCovorLyc(){
+    if(isCov){
+        isCov = false;
+        Cover_hide();
+        lyric_widget->show();
+    }
+    else{
+        isCov = true;
+        Cover_show();
+        lyric_widget->hide();
+    }
+}
+
+void MainWindow::Cover_hide(){
+    cover->hide();
+    StyandRe->hide();
+    Sty->hide();
+}
+
+void MainWindow::Cover_show(){
+    cover->show();
+    StyandRe->show();
+    Sty->show();
+}
+
