@@ -3,6 +3,7 @@
 - 基于QT带图形界面的音乐播放器
 ## 目录结构
 ```  
+│  LICENCE
 │  README.md
 ├─build-musicplayer-Desktop_Qt_5_9_0_MinGW_32bit-Release
 │  │    ...
@@ -39,3 +40,7 @@
 3. [jpeg格式解析可以参考博文](https://blog.csdn.net/u012819339/article/details/46544061)
 
 4. [png格式解析可以参考博文](https://blog.csdn.net/bisword/article/details/2777121)
+
+5. [git中的needs merge问题](https://www.cnblogs.com/zengsf/p/7517769.html)
+
+6. [git强制覆盖本地代码](https://blog.csdn.net/Amnesiac666/article/details/121392833)
