@@ -24,6 +24,10 @@ MainWindow::~MainWindow()
 }
 
 void MainWindow::init(){
+//    ui->tableWidget->horizontalHeader()->setStyleSheet("QHeaderView::section{background:rgb(248, 249, 215);}");
+//    ui->tableWidget->verticalHeader()->setStyleSheet("QHeaderView::section{background:rgb(248, 249, 215);}");
+//    ui->tableWidget->setStyleSheet("QTableCornerButton::section{background:rgb(248, 249, 215);}");
+
     connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotButtonStart);
     connect(ui->Bpause,&QPushButton::clicked,this,&MainWindow::slotPixShow);
     connect(ui->Bnext,&QPushButton::clicked,this,&MainWindow::slotButtonnext);
@@ -246,7 +250,7 @@ void MainWindow::slotPixShow(){
 }
 
 void MainWindow::slotCopySong(){
-    QStringList path_list = QFileDialog::getOpenFileNames(this, tr("open file"), " ",  tr("MP3文件(*.mp3)"));
+    QStringList path_list = QFileDialog::getOpenFileNames(this, tr("新增歌曲"), " ",  tr("MP3文件(*.mp3)"));
     for(int i = 0; i < path_list.size();i++){
         QFileInfo newFile = QFileInfo(path_list.at(i));
         QString dstPath = newFile.fileName();

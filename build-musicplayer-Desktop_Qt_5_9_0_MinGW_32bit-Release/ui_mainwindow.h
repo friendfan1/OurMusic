@@ -13,6 +13,7 @@
 #include <QtWidgets/QAction>
 #include <QtWidgets/QApplication>
 #include <QtWidgets/QButtonGroup>
+#include <QtWidgets/QGroupBox>
 #include <QtWidgets/QHBoxLayout>
 #include <QtWidgets/QHeaderView>
 #include <QtWidgets/QLabel>
@@ -21,9 +22,7 @@
 #include <QtWidgets/QPushButton>
 #include <QtWidgets/QSlider>
 #include <QtWidgets/QSpacerItem>
-#include <QtWidgets/QStatusBar>
 #include <QtWidgets/QTableWidget>
-#include <QtWidgets/QVBoxLayout>
 #include <QtWidgets/QWidget>
 
 QT_BEGIN_NAMESPACE
@@ -33,21 +32,17 @@ class Ui_MainWindow
 public:
     QWidget *centralWidget;
     QLabel *currentmusic;
+    QTableWidget *tableWidget;
+    QGroupBox *groupBox;
     QWidget *layoutWidget;
-    QVBoxLayout *verticalLayout;
-    QLabel *volume_label;
-    QSlider *VolumeSlider;
-    QPushButton *volume_btn;
+    QHBoxLayout *horizontalLayout_3;
+    QPushButton *AddtoList;
+    QPushButton *Bmenu;
     QWidget *layoutWidget1;
     QHBoxLayout *horizontalLayout_2;
     QLabel *label;
     QSlider *horizontalSlider;
-    QTableWidget *tableWidget;
     QWidget *layoutWidget2;
-    QHBoxLayout *horizontalLayout_3;
-    QPushButton *AddtoList;
-    QPushButton *Bmenu;
-    QWidget *widget;
     QHBoxLayout *horizontalLayout;
     QPushButton *Blast;
     QSpacerItem *horizontalSpacer;
@@ -56,19 +51,25 @@ public:
     QPushButton *Bnext;
     QSpacerItem *horizontalSpacer_3;
     QPushButton *playMode;
+    QPushButton *volume_btn;
+    QLabel *volume_label;
+    QSlider *VolumeSlider;
     QMenuBar *menuBar;
-    QStatusBar *statusBar;
 
     void setupUi(QMainWindow *MainWindow)
     {
         if (MainWindow->objectName().isEmpty())
             MainWindow->setObjectName(QStringLiteral("MainWindow"));
-        MainWindow->resize(710, 617);
+        MainWindow->resize(710, 595);
         MainWindow->setMinimumSize(QSize(700, 550));
         MainWindow->setMaximumSize(QSize(1200, 800));
+        MainWindow->setFocusPolicy(Qt::NoFocus);
         QIcon icon;
         icon.addFile(QStringLiteral(":/res/OurMusic.png"), QSize(), QIcon::Normal, QIcon::Off);
         MainWindow->setWindowIcon(icon);
+        MainWindow->setStyleSheet(QLatin1String("\n"
+"\n"
+"background-color: rgb(178, 200, 223);"));
         centralWidget = new QWidget(MainWindow);
         centralWidget->setObjectName(QStringLiteral("centralWidget"));
         currentmusic = new QLabel(centralWidget);
@@ -80,86 +81,67 @@ public:
         sizePolicy.setHeightForWidth(currentmusic->sizePolicy().hasHeightForWidth());
         currentmusic->setSizePolicy(sizePolicy);
         currentmusic->setMaximumSize(QSize(338, 16777215));
-        layoutWidget = new QWidget(centralWidget);
-        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
-        layoutWidget->setGeometry(QRect(10, 360, 81, 141));
-        verticalLayout = new QVBoxLayout(layoutWidget);
-        verticalLayout->setSpacing(6);
-        verticalLayout->setContentsMargins(11, 11, 11, 11);
-        verticalLayout->setObjectName(QStringLiteral("verticalLayout"));
-        verticalLayout->setContentsMargins(0, 0, 0, 0);
-        volume_label = new QLabel(layoutWidget);
-        volume_label->setObjectName(QStringLiteral("volume_label"));
-        QSizePolicy sizePolicy1(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        tableWidget = new QTableWidget(centralWidget);
+        if (tableWidget->columnCount() < 1)
+            tableWidget->setColumnCount(1);
+        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
+        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
+        tableWidget->setObjectName(QStringLiteral("tableWidget"));
+        tableWidget->setGeometry(QRect(450, 10, 256, 481));
+        QSizePolicy sizePolicy1(QSizePolicy::Minimum, QSizePolicy::Expanding);
         sizePolicy1.setHorizontalStretch(0);
         sizePolicy1.setVerticalStretch(0);
-        sizePolicy1.setHeightForWidth(volume_label->sizePolicy().hasHeightForWidth());
-        volume_label->setSizePolicy(sizePolicy1);
+        sizePolicy1.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
+        tableWidget->setSizePolicy(sizePolicy1);
+        tableWidget->setMinimumSize(QSize(50, 50));
+        tableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
+        tableWidget->setStyleSheet(QLatin1String("background-color: rgb(196, 215, 224);\n"
+"selection-color: rgb(170, 255, 255);\n"
+""));
+        tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
+        tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
+        tableWidget->horizontalHeader()->setStretchLastSection(true);
+        groupBox = new QGroupBox(centralWidget);
+        groupBox->setObjectName(QStringLiteral("groupBox"));
+        groupBox->setGeometry(QRect(0, 500, 711, 71));
+        groupBox->setStyleSheet(QStringLiteral("background-color: rgb(110, 133, 183);"));
+        groupBox->setFlat(false);
+        groupBox->setCheckable(false);
+        layoutWidget = new QWidget(groupBox);
+        layoutWidget->setObjectName(QStringLiteral("layoutWidget"));
+        layoutWidget->setGeometry(QRect(510, 10, 155, 31));
+        horizontalLayout_3 = new QHBoxLayout(layoutWidget);
+        horizontalLayout_3->setSpacing(6);
+        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
+        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
+        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
+        AddtoList = new QPushButton(layoutWidget);
+        AddtoList->setObjectName(QStringLiteral("AddtoList"));
+        sizePolicy.setHeightForWidth(AddtoList->sizePolicy().hasHeightForWidth());
+        AddtoList->setSizePolicy(sizePolicy);
+        AddtoList->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon1;
+        icon1.addFile(QStringLiteral(":/res/add-to-list.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        AddtoList->setIcon(icon1);
+        AddtoList->setFlat(true);
 
-        verticalLayout->addWidget(volume_label, 0, Qt::AlignHCenter);
+        horizontalLayout_3->addWidget(AddtoList);
 
-        VolumeSlider = new QSlider(layoutWidget);
-        VolumeSlider->setObjectName(QStringLiteral("VolumeSlider"));
-        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Maximum);
-        sizePolicy2.setHorizontalStretch(0);
-        sizePolicy2.setVerticalStretch(0);
-        sizePolicy2.setHeightForWidth(VolumeSlider->sizePolicy().hasHeightForWidth());
-        VolumeSlider->setSizePolicy(sizePolicy2);
-        VolumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
-        VolumeSlider->setMouseTracking(true);
-        VolumeSlider->setStyleSheet(QLatin1String("\n"
-"\n"
-"QSlider::groove:vertical\n"
-"{\n"
-"	background: #cbcbcb; \n"
-"	width: 6px; \n"
-"	border-radius: 1px; \n"
-"	padding-left:-1px; \n"
-"	padding-right:-1px; \n"
-"	padding-top:4px; \n"
-"	padding-bottom:4px; \n"
-"}\n"
-"\n"
-"QSlider::sub-page:vertical \n"
-"{\n"
-"	background: #cbcbcb; \n"
-"	border-radius: 2px; \n"
-"}\n"
-"QSlider::add-page:vertical\n"
-"{\n"
-"	background-color: rgb(90,49,255);\n"
-"	width: 10px; \n"
-"	border-radius: 2px; \n"
-"}\n"
-"\n"
-"QSlider::handle:vertical\n"
-"{ \n"
-"	border-color: rgb(0, 255, 255);\n"
-"	border-image: url(:/res/sliderbtn.png);				\n"
-"	margin: -4px -8px -4px -8px; \n"
-"	height: 20px; \n"
-"}"));
-        VolumeSlider->setMaximum(100);
-        VolumeSlider->setOrientation(Qt::Vertical);
+        Bmenu = new QPushButton(layoutWidget);
+        Bmenu->setObjectName(QStringLiteral("Bmenu"));
+        sizePolicy.setHeightForWidth(Bmenu->sizePolicy().hasHeightForWidth());
+        Bmenu->setSizePolicy(sizePolicy);
+        Bmenu->setCursor(QCursor(Qt::PointingHandCursor));
+        QIcon icon2;
+        icon2.addFile(QStringLiteral(":/res/justify.svg"), QSize(), QIcon::Normal, QIcon::Off);
+        Bmenu->setIcon(icon2);
+        Bmenu->setFlat(true);
 
-        verticalLayout->addWidget(VolumeSlider, 0, Qt::AlignHCenter);
+        horizontalLayout_3->addWidget(Bmenu);
 
-        volume_btn = new QPushButton(layoutWidget);
-        volume_btn->setObjectName(QStringLiteral("volume_btn"));
-        QSizePolicy sizePolicy3(QSizePolicy::Maximum, QSizePolicy::Minimum);
-        sizePolicy3.setHorizontalStretch(0);
-        sizePolicy3.setVerticalStretch(0);
-        sizePolicy3.setHeightForWidth(volume_btn->sizePolicy().hasHeightForWidth());
-        volume_btn->setSizePolicy(sizePolicy3);
-        volume_btn->setCursor(QCursor(Qt::PointingHandCursor));
-        volume_btn->setStyleSheet(QStringLiteral("QPushButton{border-image: url(:/res/volume.png);}"));
-        volume_btn->setFlat(false);
-
-        verticalLayout->addWidget(volume_btn, 0, Qt::AlignHCenter);
-
-        layoutWidget1 = new QWidget(centralWidget);
+        layoutWidget1 = new QWidget(groupBox);
         layoutWidget1->setObjectName(QStringLiteral("layoutWidget1"));
-        layoutWidget1->setGeometry(QRect(0, 510, 671, 24));
+        layoutWidget1->setGeometry(QRect(0, 40, 671, 24));
         horizontalLayout_2 = new QHBoxLayout(layoutWidget1);
         horizontalLayout_2->setSpacing(6);
         horizontalLayout_2->setContentsMargins(11, 11, 11, 11);
@@ -247,64 +229,15 @@ public:
 
         horizontalLayout_2->addWidget(horizontalSlider);
 
-        tableWidget = new QTableWidget(centralWidget);
-        if (tableWidget->columnCount() < 1)
-            tableWidget->setColumnCount(1);
-        QTableWidgetItem *__qtablewidgetitem = new QTableWidgetItem();
-        tableWidget->setHorizontalHeaderItem(0, __qtablewidgetitem);
-        tableWidget->setObjectName(QStringLiteral("tableWidget"));
-        tableWidget->setGeometry(QRect(440, 31, 256, 411));
-        QSizePolicy sizePolicy4(QSizePolicy::Minimum, QSizePolicy::Expanding);
-        sizePolicy4.setHorizontalStretch(0);
-        sizePolicy4.setVerticalStretch(0);
-        sizePolicy4.setHeightForWidth(tableWidget->sizePolicy().hasHeightForWidth());
-        tableWidget->setSizePolicy(sizePolicy4);
-        tableWidget->setMinimumSize(QSize(50, 50));
-        tableWidget->viewport()->setProperty("cursor", QVariant(QCursor(Qt::PointingHandCursor)));
-        tableWidget->setEditTriggers(QAbstractItemView::NoEditTriggers);
-        tableWidget->setSelectionMode(QAbstractItemView::SingleSelection);
-        tableWidget->horizontalHeader()->setStretchLastSection(true);
-        layoutWidget2 = new QWidget(centralWidget);
+        layoutWidget2 = new QWidget(groupBox);
         layoutWidget2->setObjectName(QStringLiteral("layoutWidget2"));
-        layoutWidget2->setGeometry(QRect(480, 470, 155, 31));
-        horizontalLayout_3 = new QHBoxLayout(layoutWidget2);
-        horizontalLayout_3->setSpacing(6);
-        horizontalLayout_3->setContentsMargins(11, 11, 11, 11);
-        horizontalLayout_3->setObjectName(QStringLiteral("horizontalLayout_3"));
-        horizontalLayout_3->setContentsMargins(0, 0, 0, 0);
-        AddtoList = new QPushButton(layoutWidget2);
-        AddtoList->setObjectName(QStringLiteral("AddtoList"));
-        sizePolicy.setHeightForWidth(AddtoList->sizePolicy().hasHeightForWidth());
-        AddtoList->setSizePolicy(sizePolicy);
-        AddtoList->setCursor(QCursor(Qt::PointingHandCursor));
-        QIcon icon1;
-        icon1.addFile(QStringLiteral(":/res/add-to-list.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        AddtoList->setIcon(icon1);
-        AddtoList->setFlat(true);
-
-        horizontalLayout_3->addWidget(AddtoList);
-
-        Bmenu = new QPushButton(layoutWidget2);
-        Bmenu->setObjectName(QStringLiteral("Bmenu"));
-        sizePolicy.setHeightForWidth(Bmenu->sizePolicy().hasHeightForWidth());
-        Bmenu->setSizePolicy(sizePolicy);
-        Bmenu->setCursor(QCursor(Qt::PointingHandCursor));
-        QIcon icon2;
-        icon2.addFile(QStringLiteral(":/res/justify.svg"), QSize(), QIcon::Normal, QIcon::Off);
-        Bmenu->setIcon(icon2);
-        Bmenu->setFlat(true);
-
-        horizontalLayout_3->addWidget(Bmenu);
-
-        widget = new QWidget(centralWidget);
-        widget->setObjectName(QStringLiteral("widget"));
-        widget->setGeometry(QRect(110, 470, 309, 31));
-        horizontalLayout = new QHBoxLayout(widget);
+        layoutWidget2->setGeometry(QRect(120, 10, 309, 31));
+        horizontalLayout = new QHBoxLayout(layoutWidget2);
         horizontalLayout->setSpacing(6);
         horizontalLayout->setContentsMargins(11, 11, 11, 11);
         horizontalLayout->setObjectName(QStringLiteral("horizontalLayout"));
         horizontalLayout->setContentsMargins(0, 0, 0, 0);
-        Blast = new QPushButton(widget);
+        Blast = new QPushButton(layoutWidget2);
         Blast->setObjectName(QStringLiteral("Blast"));
         Blast->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon3;
@@ -318,7 +251,7 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer);
 
-        Bpause = new QPushButton(widget);
+        Bpause = new QPushButton(layoutWidget2);
         Bpause->setObjectName(QStringLiteral("Bpause"));
         Bpause->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon4;
@@ -332,7 +265,7 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_2);
 
-        Bnext = new QPushButton(widget);
+        Bnext = new QPushButton(layoutWidget2);
         Bnext->setObjectName(QStringLiteral("Bnext"));
         Bnext->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon5;
@@ -346,7 +279,7 @@ public:
 
         horizontalLayout->addItem(horizontalSpacer_3);
 
-        playMode = new QPushButton(widget);
+        playMode = new QPushButton(layoutWidget2);
         playMode->setObjectName(QStringLiteral("playMode"));
         playMode->setCursor(QCursor(Qt::PointingHandCursor));
         QIcon icon6;
@@ -356,14 +289,93 @@ public:
 
         horizontalLayout->addWidget(playMode);
 
+        volume_btn = new QPushButton(groupBox);
+        volume_btn->setObjectName(QStringLiteral("volume_btn"));
+        volume_btn->setGeometry(QRect(40, 10, 31, 31));
+        QSizePolicy sizePolicy2(QSizePolicy::Fixed, QSizePolicy::Minimum);
+        sizePolicy2.setHorizontalStretch(0);
+        sizePolicy2.setVerticalStretch(0);
+        sizePolicy2.setHeightForWidth(volume_btn->sizePolicy().hasHeightForWidth());
+        volume_btn->setSizePolicy(sizePolicy2);
+        volume_btn->setCursor(QCursor(Qt::PointingHandCursor));
+        volume_btn->setStyleSheet(QStringLiteral("QPushButton{border-image: url(:/res/volume.png);}"));
+        volume_btn->setFlat(false);
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        label->raise();
+        horizontalSlider->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        layoutWidget->raise();
+        volume_btn->raise();
+        volume_label = new QLabel(centralWidget);
+        volume_label->setObjectName(QStringLiteral("volume_label"));
+        volume_label->setGeometry(QRect(30, 390, 72, 16));
+        QSizePolicy sizePolicy3(QSizePolicy::Maximum, QSizePolicy::Maximum);
+        sizePolicy3.setHorizontalStretch(0);
+        sizePolicy3.setVerticalStretch(0);
+        sizePolicy3.setHeightForWidth(volume_label->sizePolicy().hasHeightForWidth());
+        volume_label->setSizePolicy(sizePolicy3);
+        VolumeSlider = new QSlider(centralWidget);
+        VolumeSlider->setObjectName(QStringLiteral("VolumeSlider"));
+        VolumeSlider->setGeometry(QRect(50, 410, 22, 84));
+        QSizePolicy sizePolicy4(QSizePolicy::Fixed, QSizePolicy::Maximum);
+        sizePolicy4.setHorizontalStretch(0);
+        sizePolicy4.setVerticalStretch(0);
+        sizePolicy4.setHeightForWidth(VolumeSlider->sizePolicy().hasHeightForWidth());
+        VolumeSlider->setSizePolicy(sizePolicy4);
+        VolumeSlider->setCursor(QCursor(Qt::PointingHandCursor));
+        VolumeSlider->setMouseTracking(true);
+        VolumeSlider->setStyleSheet(QLatin1String("\n"
+"\n"
+"QSlider::groove:vertical\n"
+"{\n"
+"	background: #cbcbcb; \n"
+"	width: 6px; \n"
+"	border-radius: 1px; \n"
+"	padding-left:-1px; \n"
+"	padding-right:-1px; \n"
+"	padding-top:4px; \n"
+"	padding-bottom:4px; \n"
+"}\n"
+"\n"
+"QSlider::sub-page:vertical \n"
+"{\n"
+"	background: #cbcbcb; \n"
+"	border-radius: 2px; \n"
+"}\n"
+"QSlider::add-page:vertical\n"
+"{\n"
+"	background-color: rgb(90,49,255);\n"
+"	width: 10px; \n"
+"	border-radius: 2px; \n"
+"}\n"
+"\n"
+"QSlider::handle:vertical\n"
+"{ \n"
+"	border-color: rgb(0, 255, 255);\n"
+"	border-image: url(:/res/sliderbtn.png);				\n"
+"	margin: -4px -8px -4px -8px; \n"
+"	height: 20px; \n"
+"}"));
+        VolumeSlider->setMaximum(100);
+        VolumeSlider->setOrientation(Qt::Vertical);
         MainWindow->setCentralWidget(centralWidget);
+        groupBox->raise();
+        currentmusic->raise();
+        layoutWidget->raise();
+        tableWidget->raise();
+        VolumeSlider->raise();
         menuBar = new QMenuBar(MainWindow);
         menuBar->setObjectName(QStringLiteral("menuBar"));
         menuBar->setGeometry(QRect(0, 0, 710, 26));
         MainWindow->setMenuBar(menuBar);
-        statusBar = new QStatusBar(MainWindow);
-        statusBar->setObjectName(QStringLiteral("statusBar"));
-        MainWindow->setStatusBar(statusBar);
 
         retranslateUi(MainWindow);
 
@@ -374,14 +386,9 @@ public:
     {
         MainWindow->setWindowTitle(QApplication::translate("MainWindow", "MainWindow", Q_NULLPTR));
         currentmusic->setText(QString());
-        volume_label->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
-#ifndef QT_NO_TOOLTIP
-        volume_btn->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>\345\215\225\345\207\273\345\274\200\345\220\257\351\235\231\351\237\263</p></body></html>", Q_NULLPTR));
-#endif // QT_NO_TOOLTIP
-        volume_btn->setText(QString());
-        label->setText(QApplication::translate("MainWindow", "00:00", Q_NULLPTR));
         QTableWidgetItem *___qtablewidgetitem = tableWidget->horizontalHeaderItem(0);
         ___qtablewidgetitem->setText(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\220\215\347\247\260", Q_NULLPTR));
+        groupBox->setTitle(QString());
 #ifndef QT_NO_TOOLTIP
         AddtoList->setToolTip(QApplication::translate("MainWindow", "\346\226\260\345\242\236\351\237\263\344\271\220", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
@@ -390,6 +397,7 @@ public:
         Bmenu->setToolTip(QApplication::translate("MainWindow", "\346\255\214\346\233\262\345\210\227\350\241\250", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         Bmenu->setText(QString());
+        label->setText(QApplication::translate("MainWindow", "00:00", Q_NULLPTR));
 #ifndef QT_NO_TOOLTIP
         Blast->setToolTip(QApplication::translate("MainWindow", "\344\270\212\344\270\200\346\233\262", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
@@ -406,6 +414,11 @@ public:
         playMode->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>\345\210\227\350\241\250\346\222\255\346\224\276</p></body></html>", Q_NULLPTR));
 #endif // QT_NO_TOOLTIP
         playMode->setText(QString());
+#ifndef QT_NO_TOOLTIP
+        volume_btn->setToolTip(QApplication::translate("MainWindow", "<html><head/><body><p>\345\215\225\345\207\273\345\274\200\345\220\257\351\235\231\351\237\263</p></body></html>", Q_NULLPTR));
+#endif // QT_NO_TOOLTIP
+        volume_btn->setText(QString());
+        volume_label->setText(QApplication::translate("MainWindow", "TextLabel", Q_NULLPTR));
     } // retranslateUi
 
 };
