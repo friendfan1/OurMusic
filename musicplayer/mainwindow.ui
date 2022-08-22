@@ -464,21 +464,6 @@ margin-bottom:4px;
       <bool>false</bool>
      </property>
     </widget>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>label</zorder>
-    <zorder>horizontalSlider</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>layoutWidget</zorder>
-    <zorder>volume_btn</zorder>
-    <zorder>horizontalSpacer_2</zorder>
    </widget>
    <widget class="QLabel" name="volume_label">
     <property name="geometry">
@@ -561,11 +546,11 @@ QSlider::handle:vertical
      <enum>Qt::Vertical</enum>
     </property>
    </widget>
+   <zorder>volume_label</zorder>
    <zorder>groupBox</zorder>
    <zorder>currentmusic</zorder>
-   <zorder>layoutWidget</zorder>
-   <zorder>tableWidget</zorder>
    <zorder>VolumeSlider</zorder>
+   <zorder>tableWidget</zorder>
   </widget>
   <widget class="QMenuBar" name="menuBar">
    <property name="geometry">

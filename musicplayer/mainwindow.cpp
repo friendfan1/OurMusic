@@ -15,7 +15,6 @@ MainWindow::MainWindow(QWidget *parent) :
 
     init();     //初始化
     ui->tableWidget->hide();
-
 }
 
 MainWindow::~MainWindow()
@@ -51,9 +50,6 @@ void MainWindow::init(){
     }
     playerlist->setCurrentIndex(0);
     player->setPlaylist(playerlist);//将播放列表加载到播放器
-
-    lyric_widget=new LyricWidget(this);
-    lyric_widget->move(120,380);//初始化歌词部件
 
     connect(player,&QMediaPlayer::currentMediaChanged,this,&MainWindow::slotShowCurrentMusic);
     slotShowCurrentMusic();
@@ -115,7 +111,7 @@ void MainWindow::init(){
         }
         buttonMenu->exec(QCursor::pos());
     });
-    lyric_widget->move(200,200);
+    lyric_widget->move(80,40);
     lyric_widget->hide();
 }
 
@@ -156,6 +152,9 @@ void MainWindow::slotButtonpre(){
 void MainWindow::slotButtonshow(){
     if(!isshow){
         isshow = true;
+        if(!isCov){
+            slotChangeCovorLyc();
+        }
         ui->tableWidget->show();
     }else{
         isshow = false;
@@ -185,19 +184,64 @@ void MainWindow::slotShowCurrentMusic(){
 void MainWindow::slotPositionChange(qint64 position){
     ui->horizontalSlider->setMaximum(player->duration());
     ui->horizontalSlider->setValue(position);
-    ui->label->setText(QString::number(position/60000)+":"+QString::number(position%60000/1000)+"/"+
-                       QString::number(player->duration()/60000)+":"+QString::number(player->duration()%60000/1000));
+    QString progress=QString::number(position/60000)+":";
+    if(position%60000/1000/10==0)
+    {
+        progress+="0"+QString::number(position%60000/1000)+"/"+
+                QString::number(player->duration()/60000)+":";
+    }else{
+        progress+=QString::number(position%60000/1000)+"/"+
+                QString::number(player->duration()/60000)+":";
+    }
+    if(player->duration()%60000/1000/10==0)
+    {
+        progress+="0"+QString::number(player->duration()%60000/1000);
+    }else
+    {
+        progress+=QString::number(player->duration()%60000/1000);
+    }
+    ui->label->setText(progress);//显示进度
 }
 void MainWindow::slotSliderChange(){
 
     int position=ui->horizontalSlider->value();
     player->setPosition(position);
-    ui->label->setText(QString::number(position/60000)+":"+QString::number(position%60000/1000)+"/"+
-                       QString::number(player->duration()/60000)+":"+QString::number(player->duration()%60000/1000));
+    QString progress=QString::number(position/60000)+":";
+    if(position%60000/1000/10==0)
+    {
+        progress+="0"+QString::number(position%60000/1000)+"/"+
+                QString::number(player->duration()/60000)+":";
+    }else{
+        progress+=QString::number(position%60000/1000)+"/"+
+                QString::number(player->duration()/60000)+":";
+    }
+    if(player->duration()%60000/1000/10==0)
+    {
+        progress+="0"+QString::number(player->duration()%60000/1000);
+    }else
+    {
+        progress+=QString::number(player->duration()%60000/1000);
+    }
+    ui->label->setText(progress);
 }
 void MainWindow::slotSliderMove(int position){
-    ui->label->setText(QString::number(position/60000)+":"+QString::number(position%60000/1000)+"/"+
-                       QString::number(player->duration()/60000)+":"+QString::number(player->duration()%60000/1000));
+    QString progress=QString::number(position/60000)+":";
+    if(position%60000/1000/10==0)
+    {
+        progress+="0"+QString::number(position%60000/1000)+"/"+
+                QString::number(player->duration()/60000)+":";
+    }else{
+        progress+=QString::number(position%60000/1000)+"/"+
+                QString::number(player->duration()/60000)+":";
+    }
+    if(player->duration()%60000/1000/10==0)
+    {
+        progress+="0"+QString::number(player->duration()%60000/1000);
+    }else
+    {
+        progress+=QString::number(player->duration()%60000/1000);
+    }
+    ui->label->setText(progress);
 }
 void MainWindow::slotVolumeBtnClicked(){
     if(!isMuted){
@@ -358,11 +402,19 @@ void MainWindow::CovBtn_init(){
     CovBtn->setCursor(Qt::PointingHandCursor);
     CovBtn->move(100,100);
     connect(CovBtn,&QPushButton::clicked,this,&MainWindow::slotChangeCovorLyc);
+
+    lyric_widget=new LyricWidget(this);
+    //lyric_widget->move(120,380);//初始化歌词部件
+    connect(lyric_widget->btn,&QPushButton::clicked,this,&MainWindow::slotChangeCovorLyc);
 }
 
 void MainWindow::slotChangeCovorLyc(){
     if(isCov){
         isCov = false;
+        if(isshow){
+            ui->tableWidget->hide();
+            isshow=false;
+        }
         Cover_hide();
         lyric_widget->show();
     }
