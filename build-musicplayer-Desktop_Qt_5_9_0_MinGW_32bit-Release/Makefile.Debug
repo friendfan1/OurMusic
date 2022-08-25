@@ -135,17 +135,24 @@ compiler_rcc_clean:
 	-$(DEL_FILE) debug\qrc_res.cpp
 debug/qrc_res.cpp: ../musicplayer/res.qrc \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/bin/rcc.exe \
-		../musicplayer/res/10001.jpg \
 		../musicplayer/res/record.png \
-		../musicplayer/res/volume.png \
-		../musicplayer/res/justify.svg \
+		../musicplayer/res/add-to-list.svg \
+		../musicplayer/res/OurMusic.jpg \
+		../musicplayer/res/pause.png \
+		../musicplayer/res/stylus.png \
+		../musicplayer/res/shuffle.png \
+		../musicplayer/res/OurMusic.png \
 		../musicplayer/res/start.png \
 		../musicplayer/res/volume_muted.png \
-		../musicplayer/res/stylus.png \
+		../musicplayer/res/volume.png \
+		../musicplayer/res/Sequential.svg \
+		../musicplayer/res/10001.jpg \
+		../musicplayer/res/currentloop.png \
+		../musicplayer/res/loop.png \
 		../musicplayer/res/right.png \
-		../musicplayer/res/OurMusic.jpg \
+		../musicplayer/res/sliderbtn.png \
 		../musicplayer/res/left.png \
-		../musicplayer/res/pause.png
+		../musicplayer/res/justify.svg
 	D:\Qt\Qt5.9.0\5.9\mingw53_32\bin\rcc.exe -name res ..\musicplayer\res.qrc -o debug\qrc_res.cpp
 
 compiler_moc_predefs_make_all: debug/moc_predefs.h
@@ -325,11 +332,20 @@ debug/moc_mainwindow.cpp: ../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/Q
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QLabel \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlabel.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../musicplayer/stylusandrecord.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtimer.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbasictimer.h \
 		../musicplayer/stylus.h \
+		../musicplayer/mycover.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QFileDialog \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qfiledialog.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMessageBox \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmessagebox.h \
 		../musicplayer/mainwindow.h \
 		debug/moc_predefs.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
@@ -463,6 +479,11 @@ debug/moc_lyricwidget.cpp: ../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qframe.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QDebug \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qicon.h \
+		../musicplayer/config.h \
 		../musicplayer/lyricwidget.h \
 		debug/moc_predefs.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
@@ -921,6 +942,10 @@ debug/moc_mycover.cpp: ../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QWid
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvector2d.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtouchdevice.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QPainter \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpainter.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextoption.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpen.h \
 		../musicplayer/mycover.h \
 		debug/moc_predefs.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
@@ -1026,6 +1051,10 @@ debug/moc_mycover.cpp: ../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QWid
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvector2d.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtouchdevice.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QPainter \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpainter.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextoption.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpen.h \
 		../musicplayer/mycover.h \
 		debug/moc_predefs.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/bin/moc.exe
@@ -1225,11 +1254,20 @@ debug/main.o: ../musicplayer/main.cpp ../musicplayer/mainwindow.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QLabel \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlabel.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../musicplayer/stylusandrecord.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtimer.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbasictimer.h \
 		../musicplayer/stylus.h \
+		../musicplayer/mycover.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QFileDialog \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qfiledialog.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMessageBox \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmessagebox.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QApplication \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qapplication.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qcoreapplication.h \
@@ -1408,11 +1446,20 @@ debug/mainwindow.o: ../musicplayer/mainwindow.cpp ../musicplayer/mainwindow.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QLabel \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlabel.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../musicplayer/stylusandrecord.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QTimer \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qtimer.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qbasictimer.h \
 		../musicplayer/stylus.h \
+		../musicplayer/mycover.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QFileDialog \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qfiledialog.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qdialog.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMessageBox \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmessagebox.h \
 		ui_mainwindow.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QAction \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qaction.h \
@@ -1426,6 +1473,8 @@ debug/mainwindow.o: ../musicplayer/mainwindow.cpp ../musicplayer/mainwindow.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qinputmethod.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QButtonGroup \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qbuttongroup.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QGroupBox \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qgroupbox.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QHBoxLayout \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qboxlayout.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlayout.h \
@@ -1436,14 +1485,8 @@ debug/mainwindow.o: ../musicplayer/mainwindow.cpp ../musicplayer/mainwindow.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QMenuBar \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmenubar.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qmenu.h \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QSlider \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QSpacerItem \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QStatusBar \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstatusbar.h \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QVBoxLayout
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QSpacerItem
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mainwindow.o ..\musicplayer\mainwindow.cpp
 
 debug/stylus.o: ../musicplayer/stylus.cpp ../musicplayer/stylus.h \
@@ -2039,7 +2082,12 @@ debug/lyricwidget.o: ../musicplayer/lyricwidget.cpp ../musicplayer/lyricwidget.h
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlabel.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qframe.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVector \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QDebug
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QDebug \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QPushButton \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qpushbutton.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qabstractbutton.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qicon.h \
+		../musicplayer/config.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\lyricwidget.o ..\musicplayer\lyricwidget.cpp
 
 debug/mycover.o: ../musicplayer/mycover.cpp ../musicplayer/mycover.h \
@@ -2143,6 +2191,10 @@ debug/mycover.o: ../musicplayer/mycover.cpp ../musicplayer/mycover.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/qfiledevice.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qvector2d.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtouchdevice.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/QPainter \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpainter.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qtextoption.h \
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtGui/qpen.h \
 		ui_mycover.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtCore/QVariant \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QAction \
@@ -2175,9 +2227,7 @@ debug/mycover.o: ../musicplayer/mycover.cpp ../musicplayer/mycover.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qstyle.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabbar.h \
 		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qtabwidget.h \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/QLabel \
-		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qlabel.h
+		../../../Qt/Qt5.9.0/5.9/mingw53_32/include/QtWidgets/qrubberband.h
 	$(CXX) -c $(CXXFLAGS) $(INCPATH) -o debug\mycover.o ..\musicplayer\mycover.cpp
 
 debug/qrc_res.o: debug/qrc_res.cpp 

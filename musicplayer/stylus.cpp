@@ -12,7 +12,7 @@ void Stylus::paintEvent(QPaintEvent *){
     pix_stylus.load(STYLUS);
 
     if(isPlay){
-        painter.rotate(40);
+        painter.rotate(30);
     }
     else{
         painter.rotate(0);

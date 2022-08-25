@@ -3,7 +3,7 @@
 
 Cover::Cover(QWidget *parent)
     : QWidget(parent){
-    setFixedSize(170,170);
+    setFixedSize(250,250);
 }
 
 QPixmap Cover::pixmapToRound(QPixmap &src, int radius)

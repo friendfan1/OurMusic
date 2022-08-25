@@ -369,11 +369,11 @@ void MainWindow::slotChangePlayMode(){
 }
 
 void MainWindow::Cover_init(){
-    cover = new Cover(this);
     StyandRe = new StylusandRecord(this);
     Sty = new Stylus(this);
+    cover = new Cover(this);
 
-    cover->move(155,140);
+    cover->move(115,100);
     StyandRe->move(80,65);
     Sty->move(80,-150);
 
