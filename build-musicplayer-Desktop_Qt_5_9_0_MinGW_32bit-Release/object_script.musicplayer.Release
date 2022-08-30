@@ -1,0 +1,17 @@
+INPUT(
+./release\main.o
+./release\mainwindow.o
+./release\stylus.o
+./release\stylusandrecord.o
+./release\cover.o
+./release\mp3header.o
+./release\lyricwidget.o
+./release\mycover.o
+./release\qrc_res.o
+./release\moc_mainwindow.o
+./release\moc_lyricwidget.o
+./release\moc_stylus.o
+./release\moc_stylusandrecord.o
+./release\moc_cover.o
+./release\moc_mycover.o
+);

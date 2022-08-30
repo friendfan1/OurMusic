@@ -1,0 +1,17 @@
+INPUT(
+./debug\main.o
+./debug\mainwindow.o
+./debug\stylus.o
+./debug\stylusandrecord.o
+./debug\cover.o
+./debug\mp3header.o
+./debug\lyricwidget.o
+./debug\mycover.o
+./debug\qrc_res.o
+./debug\moc_mainwindow.o
+./debug\moc_lyricwidget.o
+./debug\moc_stylus.o
+./debug\moc_stylusandrecord.o
+./debug\moc_cover.o
+./debug\moc_mycover.o
+);

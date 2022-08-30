@@ -136,16 +136,29 @@ void MainWindow::slotButtonStart(){
 }
 
 void MainWindow::slotButtonnext(){
-    if(playerlist->currentIndex()<filelist.size()-1 || modeNow == loop || modeNow == shuffle){
-        playerlist->next();
-        playerlist->nextIndex();
+    if(playerlist->currentIndex()!=filelist.size()-1// || modeNow == loop || modeNow == shuffle
+            ){
+        playerlist->setCurrentIndex(playerlist->currentIndex()+1);
+        playerlist->currentIndex();
+
+        //playerlist->nextIndex();
+    }
+    else if(playerlist->currentIndex()==filelist.size()-1// || modeNow == loop || modeNow == shuffle
+            ){
+        playerlist->setCurrentIndex(0);
+        playerlist->currentIndex();
     }
 }
 
 void MainWindow::slotButtonpre(){
-    if(playerlist->currentIndex()>0){
-        playerlist->previous();
-        playerlist->previousIndex();
+    if(playerlist->currentIndex()!=0){
+        playerlist->setCurrentIndex(playerlist->currentIndex()-1);
+        playerlist->currentIndex();
+        //playerlist->previousIndex();
+    }
+    else if(playerlist->currentIndex()==0){
+        playerlist->setCurrentIndex(filelist.size()-1);
+        playerlist->currentIndex();
     }
 }
 
