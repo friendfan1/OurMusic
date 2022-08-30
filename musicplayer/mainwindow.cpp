@@ -294,19 +294,27 @@ void MainWindow::slotPixShow(){
 }
 
 void MainWindow::slotCopySong(){
-    QStringList path_list = QFileDialog::getOpenFileNames(this, tr("新增歌曲"), " ",  tr("MP3文件(*.mp3)"));
+    QStringList path_list = QFileDialog::getOpenFileNames(this, tr("新增歌曲"), " ",  tr("MP3文件(可多选)(*.mp3)"));
     for(int i = 0; i < path_list.size();i++){
         QFileInfo newFile = QFileInfo(path_list.at(i));
         QString dstPath = newFile.fileName();
+        QString dstPathLyc = QString(path_list.at(i)).remove(QString(path_list.at(i)).size() - 4,4) += ".lrc";
+        qDebug() << dstPathLyc;
         QFile::copy(path_list.at(i),"music\\" + dstPath);
         addItem(dstPath);
         filelist.append(dstPath);
         playerlist->addMedia(QUrl::fromLocalFile(MusicPath+"\\"+dstPath));
+        QFileInfo fileInfo(dstPathLyc);
+        if(fileInfo.exists()){
+            QString LycFile = dstPath.remove(dstPath.size()-4,4)+=".lrc";
+            qDebug() << LycFile;
+            QFile::copy(dstPathLyc,"music\\" + LycFile);
+        }
     }
 }
 
 void MainWindow::slotDeleteSongList(){
-    int position=ui->horizontalSlider->value();
+    qint64 position=ui->horizontalSlider->value();
     double rale = cover->getAngle();
     int index = playerlist->currentIndex();
     if(rowSelect == index || filelist.size() <= 1){
@@ -317,12 +325,9 @@ void MainWindow::slotDeleteSongList(){
     }
     if(rowSelect < index){
         playerlist->setCurrentIndex(0);
-        playerlist->moveMedia(index,rowSelect);
-        playerlist->removeMedia(rowSelect + 1);
+        playerlist->removeMedia(rowSelect);
         filelist.removeAt(rowSelect);
-        playerlist->setCurrentIndex(0);
-        playerlist->moveMedia(rowSelect,index - 1);
-        playerlist->setCurrentIndex(index - 1);
+        playerlist->setCurrentIndex(index-1);
         player->setPosition(position + 570);
 
     }
