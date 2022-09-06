@@ -48,3 +48,5 @@
 5. [git中的needs merge问题](https://www.cnblogs.com/zengsf/p/7517769.html)
 
 6. [git强制覆盖本地代码](https://blog.csdn.net/Amnesiac666/article/details/121392833)
+
+7  [查看git日志]git log --pretty=oneline --all --graph --abbrev-commit
